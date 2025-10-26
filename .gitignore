@@ -1,1 +1,21 @@
 .playwright-mcp/
+
+# IDE - Cursor/VSCode
+.vscode/
+.cursor/
+*.code-workspace
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp files
+*.tmp
+*.temp
+~*
