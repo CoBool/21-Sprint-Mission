@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'ROKAFSans';
+    font-weight: 400;
+    src: url('../fonts/ROKAFSansMedium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'ROKAFSans';
+    font-weight: 700;
+    src: url('../fonts/ROKAFSansBold.woff') format('woff');
+}
