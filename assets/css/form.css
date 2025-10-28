@@ -1,0 +1,174 @@
+#wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/*
+==============================
+  폼 스타일
+==============================
+*/
+.form {
+    display: flex;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 16px;
+    flex-direction: column;
+}
+
+/*
+==============================
+  헤더 스타일
+==============================
+*/
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.header__link {
+    display: flex;
+    align-items: center;
+    font-family: "ROKAFSans";
+    font-weight: 700;
+    font-size: clamp(33.17px, 3.455vw, 66.34px);
+    color: var(--color-blue);
+    gap: 20px;
+}
+
+.header__logo-img {
+    width: clamp(51px, 5.392vw, 103px);
+}
+
+/*
+==============================
+  폼 블록 스타일
+==============================
+*/
+.form-block {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.form-block__group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-block__label {
+    font-weight: bold;
+    font-size: clamp(14px, 0.938vw, 18px);
+    color: var(--color-gray-800);
+}
+
+.form-block__input {
+    width: 100%;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: clamp(14px, 0.938vw, 18px);
+    background-color: var(--color-gray-100);
+    outline: none;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.form-block__button-eye {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: clamp(14px, 0.938vw, 18px);
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.form-block__button-eye-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.form-block__button-eye::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: block;
+    width: 2px;
+    height: 100%;
+    transform: rotate(45deg) translateX(-50%);
+    background-color: var(--color-gray-600);
+    box-shadow: 
+        -1px 0 0 0 #fff,
+        1px 0 0 0 #fff;
+}
+
+.form-block__button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 20px;
+    background-color: var(--color-blue);
+    color: #fff;
+    border: 0;
+}
+
+/*
+==============================
+    간편 로그인 블록
+==============================
+*/
+
+.oauth-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: #E6F2FF;
+    margin-bottom: 24px;
+    border-radius: 10px;
+}
+
+.oauth-block__text {
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-gray-800);
+}
+
+.oauth-block__group {
+    display: flex;
+    gap: 10px;
+}
+
+/*
+==============================
+    폼 푸터 스타일
+==============================
+*/
+
+.form__footer {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--color-gray-800);
+    gap: 10px;
+}
+
+.form__footer-link {
+    color: var(--color-blue);
+    text-decoration: none;
+}

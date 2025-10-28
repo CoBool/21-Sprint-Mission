@@ -1,170 +1,225 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- fonts -->
+    <link
+      rel="stylesheet"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
 
-  <!-- fonts -->
-  <link rel="stylesheet" crossorigin
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <link rel="stylesheet" href="./assets/css/style.css" />
+    <meta name="description" content="일상의 모든 물건을 거래해보세요" />
+    <meta name="keywords" content="판다마켓, 중고거래, 물품거래" />
 
-  <meta name="description" content="일상의 모든 물건을 거래해보세요" />
-  <meta name="keywords" content="판다마켓, 중고거래, 물품거래" />
+    <meta property="og:title" content="판다마켓" />
+    <meta property="og:description" content="일상의 모든 물건을 거래해보세요" />
+    <meta property="og:image" content="./assets/images/og-image.png" />
+    <meta property="og:url" content="https://sprint.boolean.kr/" />
 
-  <meta property="og:title" content="판다마켓" />
-  <meta property="og:description" content="일상의 모든 물건을 거래해보세요" />
-  <meta property="og:image" content="./assets/images/og-image.png" />
-  <meta property="og:url" content="https://sprint.boolean.kr/" />
+    <title>판다마켓</title>
+  </head>
 
-  <title>판다마켓</title>
-</head>
-
-<body>
-  <header class="header">
-    <div class="container">
-      <div class="header__logo">
-        <a href="/" class="header__link">
-          <img class="header__logo-img" src="./assets/images/logo.png" alt="판다마켓" />
-          <span class="header__logo-text">판다마켓</span>
-        </a>
-      </div>
-      <nav class="header__nav">
-        <a href="/login.html" class="header__login-btn">로그인</a>
-      </nav>
-    </div>
-  </header>
-  <main class="main">
-    <section class="hero">
-      <div class="container">
-        <div class="hero__text">
-          <h1 class="hero__title">
-            일상의 모든 물건을 거래해보세요
-          </h1>
-          <a href="/items.html" class="hero__link">구경하러 가기</a>
-        </div>
-        <div class="hero__image">
-          <img class="hero__img" src="./assets/images/hero-image.png" alt="판다 캐릭터와 건물 배경이 있는 일러스트레이션" />
-        </div>
-      </div>
-    </section>
-
-    <div class="features">
-      <section class="feature">
+  <body>
+    <div id="wrap">
+      <header class="header">
         <div class="container">
-          <div class="card">
-            <div class="card__image">
-              <img class="card__img" src="./assets/images/hot-item.png" alt="인기 상품을 확인해 보세요" />
+          <div class="header__logo">
+            <a href="/" class="header__link">
+              <img
+                class="header__logo-img"
+                src="./assets/images/logo.png"
+                alt="판다마켓"
+              />
+              <span class="header__logo-text">판다마켓</span>
+            </a>
+          </div>
+          <nav class="header__nav">
+            <a href="/pages/login.html" class="header__login-btn">로그인</a>
+          </nav>
+        </div>
+      </header>
+      <main>
+        <section class="hero">
+          <div class="container">
+            <div class="hero__text">
+              <h1 class="hero__title">일상의 모든 물건을 거래해보세요</h1>
+              <a href="/pages/items.html" class="hero__link">구경하러 가기</a>
             </div>
-            <div class="card__text">
-              <h3 class="card__title">Hot item</h3>
-              <h4 class="card__main-text">
-                인기 상품을<br />
-                확인해 보세요
-              </h4>
-              <p class="card__sub-text">
-                가장 HOT한 중고거래 물품을<br />판다 마켓에서 확인해 보세요
-              </p>
+            <div class="hero__image">
+              <img
+                class="hero__img"
+                src="./assets/images/hero-image.png"
+                alt="판다 캐릭터와 건물 배경이 있는 일러스트레이션"
+              />
             </div>
           </div>
-        </div>
-      </section>
-      <section class="feature">
-        <div class="container">
-          <div class="card">
-            <div class="card__image">
-              <img class="card__img" src="./assets/images/search-item.png" alt="상품 검색 기능을 보여주는 일러스트레이션" />
+        </section>
+
+        <div class="features">
+          <section class="feature">
+            <div class="container">
+              <div class="card">
+                <div class="card__image">
+                  <img
+                    class="card__img"
+                    src="./assets/images/hot-item.png"
+                    alt="인기 상품을 확인해 보세요"
+                  />
+                </div>
+                <div class="card__text">
+                  <h3 class="card__title">Hot item</h3>
+                  <h4 class="card__main-text">
+                    인기 상품을 확인해 보세요
+                  </h4>
+                  <p class="card__sub-text">
+                    가장 HOT한 중고거래 물품을 판다 마켓에서 확인해 보세요
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="card__text">
-              <h3 class="card__title">Search</h3>
-              <h4 class="card__main-text">
-                구매를 원하는<br />
-                상품을 검색하세요
-              </h4>
-              <p class="card__sub-text">
-                구매하고 싶은 물품은 검색해서<br />쉽게 찾아보세요
-              </p>
+          </section>
+          <section class="feature">
+            <div class="container">
+              <div class="card">
+                <div class="card__image">
+                  <img
+                    class="card__img"
+                    src="./assets/images/search-item.png"
+                    alt="상품 검색 기능을 보여주는 일러스트레이션"
+                  />
+                </div>
+                <div class="card__text">
+                  <h3 class="card__title">Search</h3>
+                  <h4 class="card__main-text">
+                    구매를 원하는 상품을 검색하세요
+                  </h4>
+                  <p class="card__sub-text">
+                    구매하고 싶은 물품은 검색해서 쉽게 찾아보세요
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="feature">
+            <div class="container">
+              <div class="card">
+                <div class="card__image">
+                  <img
+                    class="card__img"
+                    src="./assets/images/register-item.png"
+                    alt="상품 등록 기능을 보여주는 일러스트레이션"
+                  />
+                </div>
+                <div class="card__text">
+                  <h3 class="card__title">Register</h3>
+                  <h4 class="card__main-text">
+                    판매를 원하는 상품을 등록하세요
+                  </h4>
+                  <p class="card__sub-text">
+                    어떤 물건이든 판매하고 싶은 상품을 쉽게 등록하세요
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="hero">
+          <div class="container">
+            <div class="hero__text">
+              <h2 class="hero__title">믿을 수 있는 판다마켓 중고 거래</h2>
+            </div>
+            <div class="hero__image">
+              <img
+                class="hero__img"
+                src="./assets/images/hero-image2.png"
+                alt="판다 캐릭터들이 대화하는 일러스트레이션"
+              />
             </div>
           </div>
-        </div>
-      </section>
-      <section class="feature">
+        </section>
+      </main>
+      <footer class="footer">
         <div class="container">
-          <div class="card">
-            <div class="card__image">
-              <img class="card__img" src="./assets/images/register-item.png" alt="상품 등록 기능을 보여주는 일러스트레이션" />
-            </div>
-            <div class="card__text">
-              <h3 class="card__title">Register</h3>
-              <h4 class="card__main-text">
-                판매를 원하는<br />
-                상품을 등록하세요
-              </h4>
-              <p class="card__sub-text">
-                어떤 물건이든 판매하고 싶은 상품을<br />쉽게 등록하세요
-              </p>
-            </div>
+          <div class="footer__copyright">
+            <p class="footer__copyright-text">©codeit - 2024</p>
           </div>
+
+          <ul class="footer__nav">
+            <li class="footer__nav-item">
+              <a href="/pages/privacy.html" class="footer__nav-link"
+                >Privacy Policy</a
+              >
+            </li>
+            <li class="footer__nav-item">
+              <a href="/pages/faq.html" class="footer__nav-link">FAQ</a>
+            </li>
+          </ul>
+
+          <ul class="footer__social">
+            <li class="footer__social-item">
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                class="footer__social-link"
+              >
+                <img
+                  class="footer__social-icon"
+                  src="./assets/images/icons/facebook.png"
+                  alt="페이스북"
+                />
+              </a>
+            </li>
+            <li class="footer__social-item">
+              <a
+                href="https://www.twitter.com/"
+                target="_blank"
+                class="footer__social-link"
+              >
+                <img
+                  class="footer__social-icon"
+                  src="./assets/images/icons/twitter.png"
+                  alt="트위터"
+                />
+              </a>
+            </li>
+            <li class="footer__social-item">
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                class="footer__social-link"
+              >
+                <img
+                  class="footer__social-icon"
+                  src="./assets/images/icons/youtube.png"
+                  alt="유튜브"
+                />
+              </a>
+            </li>
+            <li class="footer__social-item">
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                class="footer__social-link"
+              >
+                <img
+                  class="footer__social-icon"
+                  src="./assets/images/icons/instagram.png"
+                  alt="인스타그램"
+                />
+              </a>
+            </li>
+          </ul>
         </div>
-      </section>
+      </footer>
     </div>
 
-    <section class="hero hero--no-link">
-      <div class="container">
-        <div class="hero__text">
-          <h2 class="hero__title">
-            믿을 수 있는<br />판다마켓 중고 거래
-          </h2>
-        </div>
-        <div class="hero__image">
-          <img class="hero__img" src="./assets/images/hero-image2.png" alt="판다 캐릭터들이 대화하는 일러스트레이션" />
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__copyright">
-        <p class="footer__copyright-text">©codeit - 2024</p>
-      </div>
-
-      <ul class="footer__nav">
-        <li class="footer__nav-item">
-          <a href="/privacy.html" class="footer__nav-link">Privacy Policy</a>
-        </li>
-        <li class="footer__nav-item">
-          <a href="/faq.html" class="footer__nav-link">FAQ</a>
-        </li>
-      </ul>
-
-      <ul class="footer__social">
-        <li class="footer__social-item">
-          <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
-            <img class="footer__social-icon" src="./assets/images/icons/facebook.png" alt="페이스북" />
-          </a>
-        </li>
-        <li class="footer__social-item">
-          <a href="https://www.twitter.com/" target="_blank" class="footer__social-link">
-            <img class="footer__social-icon" src="./assets/images/icons/twitter.png" alt="트위터" />
-          </a>
-        </li>
-        <li class="footer__social-item">
-          <a href="https://www.youtube.com/" target="_blank" class="footer__social-link">
-            <img class="footer__social-icon" src="./assets/images/icons/youtube.png" alt="유튜브" />
-          </a>
-        </li>
-        <li class="footer__social-item">
-          <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
-            <img class="footer__social-icon" src="./assets/images/icons/instagram.png" alt="인스타그램" />
-          </a>
-        </li>
-      </ul>
-    </div>
-  </footer>
-
-  <script src="./assets/js/script.js"></script>
-</body>
-
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
