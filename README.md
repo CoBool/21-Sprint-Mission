@@ -2,6 +2,7 @@
 
 중고거래 플랫폼  
 배포: [https://sprint.boolean.kr/](https://sprint.boolean.kr/)
+Github Pages: [https://cobool.github.io/21-Sprint-Mission/](https://cobool.github.io/21-Sprint-Mission/)
 
 
 ---
