@@ -112,6 +112,12 @@
     box-shadow: 
         -1px 0 0 0 var(--color-white),
         1px 0 0 0 var(--color-white);
+    transition: all 0.3s ease;
+}
+
+.form-block__button-eye.form-block__button-eye--active::before {
+  box-shadow: none;
+  transform: rotate(45deg) translateX(-50%) scaleY(0);
 }
 
 .form-block__button {
@@ -126,6 +132,12 @@
     background-color: var(--color-blue);
     color: var(--color-white);
     border: 0;
+}
+
+.form-block__button:disabled {
+  background-color: var(--color-gray-400);
+  color: var(--color-white);
+  cursor: not-allowed;
 }
 
 /*
@@ -173,4 +185,30 @@
 .form__footer-link {
     color: var(--color-blue);
     text-decoration: none;
+}
+
+/*
+==============================
+    폼 그룹 에러 스타일
+==============================
+*/
+
+.form-block__error-message {
+  display: none;
+}
+
+.form-block__group--error .form-block__error-message {
+  display: block;
+  color: red;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.form-block__group--error .form-block__label {
+  color: red;
+}
+
+.form-block__group--error .form-block__input {
+  border: 2px solid red;
+  outline: none;
 }

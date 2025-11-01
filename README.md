@@ -28,9 +28,10 @@ assets/
   images/              이미지
     icons/             소셜 로그인 아이콘
   js/
+    - form.js          폼 검증 및 이벤트 처리
     - script.js        주요 로직
   utility/
-    - validation.js    폼 검증 로직
+    - validation.js    폼 검증 유틸리티 함수
 
 pages/
   - faq.html           FAQ 페이지
@@ -127,7 +128,7 @@ font.css     → ROKAFSans 폰트
 ## 현재 상태
 - **완성:** index.html, login.html, signup.html  
 - **부분 완성:** items.html, faq.html, privacy.html (템플릿)  
-- **JS:** 폼 검증 로직 구현 예정
+- **JS:** 폼 검증 로직 및 비밀번호 보기/숨기기 기능 완성
 
 ---
 
@@ -145,8 +146,8 @@ font.css     → ROKAFSans 폰트
 - [ ] `privacy.html`: 개인정보처리방침 콘텐츠 작성
 
 ### JavaScript
-- [ ] 폼 검증 로직 완성
-- [ ] 비밀번호 보기/숨기기 기능 구현
+- [x] 폼 검증 로직 완성
+- [x] 비밀번호 보기/숨기기 기능 구현
 
 ### 반응형
 - [x] **반응형 디자인 적용 완료** (PC 1200px+, Tablet 768px~1199px, Mobile 375px~767px)
@@ -172,7 +173,7 @@ font.css     → ROKAFSans 폰트
 - [x] 로그인 페이지, 회원가입 페이지 로고 위 상단 여백 동일  
 - [x] 비밀번호 input 요소 오른쪽에 눈모양 아이콘 추가  
 - [x] 비밀번호 토글 버튼 정렬 최적화 (wrapper 적용)
-- [ ] 비밀번호 보기/숨기기 기능 구현 (예정)
+- [x] 비밀번호 보기/숨기기 기능 구현
 
 ### [반응형]
 - [x] **반응형 디자인 적용 완료** (PC 1200px+, Tablet 768px~1199px, Mobile 375px~767px)  
@@ -212,3 +213,10 @@ font.css     → ROKAFSans 폰트
 - `.form-block__input-wrapper` 추가
 - 버튼 정확한 중앙 정렬
 - 베스트 프랙티스 적용
+
+### 5. 폼 검증 로직 리팩토링
+- 설정 기반 검증 시스템 구축 (login/signup 분리)
+- 반복 코드 제거 및 헬퍼 함수 활용
+- 실시간 검증 및 버튼 활성화/비활성화 처리
+- 비밀번호 보기/숨기기 토글 기능 구현
+- null 안전성 체크 및 에러 처리 개선
