@@ -1,0 +1,53 @@
+/*
+==============================
+  공통 컴포넌트
+  모든 페이지에서 공통으로 사용하는 컴포넌트 스타일
+==============================
+*/
+
+/*
+==============================
+  레이아웃 스타일
+==============================
+*/
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  max-width: var(--max-width);
+}
+
+/*
+==============================
+  미디어 쿼리
+==============================
+*/
+@media (min-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+/*
+==============================
+  공통 유틸리티 스타일
+==============================
+*/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+}
+
