@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/form.css">
 
     <title>로그인 | 판다마켓</title>
@@ -15,11 +16,11 @@
     <div id="wrap">
         <div class="form">
             <div class="container">
-                <header class="header">
-                    <div class="header__logo">
-                        <a href="../index.html" class="header__link">
-                            <img class="header__logo-img" src="../assets/images/logo.png" alt="판다마켓">
-                            <span class="header__logo-text">판다마켓</span>
+                <header class="form-header">
+                    <div class="form-header__logo">
+                        <a href="../index.html" class="form-header__link">
+                            <img class="form-header__logo-img" src="../assets/images/logo.png" alt="판다마켓">
+                            <span class="form-header__logo-text">판다마켓</span>
                         </a>
                     </div>
                 </header>
@@ -32,10 +33,12 @@
                     </div>
                     <div class="form-block__group">
                         <label class="form-block__label" for="password">비밀번호</label>
-                        <input class="form-block__input" type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요." required>
-                        <button class="form-block__button-eye" type="button">
-                            <img class="form-block__button-eye-icon" src="../assets/images/icons/eye.svg" alt="눈 열기">
-                        </button>
+                        <div class="form-block__input-wrapper">
+                            <input class="form-block__input" type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요." required>
+                            <button class="form-block__button-eye" type="button">
+                                <img class="form-block__button-eye-icon" src="../assets/images/icons/eye.svg" alt="눈 열기">
+                            </button>
+                        </div>
                         <span class="form-block__error-message"></span>
                     </div>
                     <button class="form-block__button" type="submit">로그인</button>

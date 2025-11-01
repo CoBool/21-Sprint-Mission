@@ -18,27 +18,28 @@ HTML/CSS로 구성된 정적 중고거래 플랫폼 **“판다마켓”** 제�
 ```
 assets/
   css/
-    - base.css       기본 스타일 (변수 등)
-    - font.css       ROKAFSans 폰트
-    - form.css       로그인/회원가입 폼 스타일
-    - reset.css      Meyer's Reset
-    - style.css      메인 스타일
-  fonts/             ROKAFSans woff
-  images/            이미지
-    icons/           소셜 로그인 아이콘
+    - base.css         기본 스타일 (변수 등)
+    - common.css       공통 컴포넌트 (container, sr-only)
+    - font.css         ROKAFSans 폰트
+    - form.css         로그인/회원가입 폼 스타일
+    - reset.css        Meyer's Reset
+    - style.css        메인 페이지 스타일
+  fonts/               ROKAFSans woff
+  images/              이미지
+    icons/             소셜 로그인 아이콘
   js/
-    - script.js      주요 로직
+    - script.js        주요 로직
   utility/
-    - validation.js  폼 검증 로직
+    - validation.js    폼 검증 로직
 
 pages/
-  - faq.html         FAQ 페이지
-  - items.html       상품 리스트 페이지
-  - login.html       로그인 페이지
-  - privacy.html     개인정보처리방침 페이지
-  - signup.html      회원가입 페이지
+  - faq.html           FAQ 페이지
+  - items.html         상품 리스트 페이지
+  - login.html         로그인 페이지
+  - privacy.html       개인정보처리방침 페이지
+  - signup.html        회원가입 페이지
 
-index.html           메인 랜딩 페이지
+index.html             메인 랜딩 페이지
 ```
 
 ---
@@ -59,46 +60,96 @@ footer - 링크, SNS
 - 배너는 grid로 텍스트/이미지 2컬럼 구성  
 - 기능 카드 비율: 이미지 55%, 텍스트 45%  
 - Search 섹션만 reverse 처리 (좌우 반전)
+- Hero 이미지는 CSS 배경으로 처리
+- Features 이미지는 `<img>` 태그 사용
+
+### login.html / signup.html
+
+```
+header - 폼 헤더, 로고
+form
+  - 이메일 입력
+  - 비밀번호 입력 (토글 버튼 포함)
+  - 간편 로그인
+footer - 회원가입/로그인 링크
+```
+
+- 비밀번호 토글 버튼용 `form-block__input-wrapper` 추가
+- 로고 위 상단 여백 변수로 관리
 
 ---
 
 ## CSS
 
+### 구조
+
+```
+base.css     → 기본 변수, reset, font (@import)
+common.css   → 공통 컴포넌트 (container, sr-only)
+style.css    → 메인 페이지 스타일
+form.css     → 로그인/회원가입 폼 스타일
+reset.css    → Meyer's Reset
+font.css     → ROKAFSans 폰트
+```
+
 ### 변수
 
 ```css
 --max-width: 1140px
+
 --color-blue: #3692FF
+--color-blue-light: #E6F2FF
+--color-white: #FFFFFF
+
 --color-banner-bg: #CFE5FF
 --color-footer-bg: #111827
+
 --color-gray-50 ~ 900: 그레이 스케일
+
+--spacing-form-header-top: 60px
+--spacing-form-gap: 24px
 ```
 
 - CSS 변수로 색상 시스템 통일 관리
 - Max-width 1140px 제한
 - 폰트: Pretendard Variable (CDN) + ROKAFSans (로고, 폰트 파일)  
-- 레이아웃: grid + flexbox
-- Mobile First 접근 방식  
+- 레이아웃: flexbox
+- Mobile First 접근 방식
+- BEM 네이밍 컨벤션 사용
+
+### 페이지별 헤더 분리
+
+- 메인: `.page-header` (sticky)
+- 폼: `.form-header` (중앙 정렬)  
 
 ---
 
 ## 현재 상태
 - **완성:** index.html, login.html, signup.html  
 - **부분 완성:** items.html, faq.html, privacy.html (템플릿)  
-- **JS:** 폼 검증 로직 구현 중
+- **JS:** 폼 검증 로직 구현 예정
 
 ---
 
 ## TODO
 
+### HTML/CSS
 - [x] `login.html`: 로그인 폼 구현
 - [x] `signup.html`: 회원가입 폼 구현
+- [x] CSS 구조 개선 (common.css 분리)
+- [x] 페이지별 헤더 네이밍 분리 (page-header, form-header)
+- [x] CSS 변수 확대 (색상, 간격)
+- [x] 비밀번호 토글 버튼 구조 개선 (wrapper 적용)
 - [ ] `items.html`: 상품 리스트 페이지 구성  
 - [ ] `faq.html`: 자주 묻는 질문 콘텐츠 작성  
-- [ ] `privacy.html`: 개인정보처리방침 콘텐츠 작성  
+- [ ] `privacy.html`: 개인정보처리방침 콘텐츠 작성
+
+### JavaScript
 - [ ] 폼 검증 로직 완성
-- [ ] **미디어쿼리를 이용한 반응형 처리**  
-  (1920px 이하 구간에서 폰트, 간격, 이미지 비율 조정)
+- [ ] 비밀번호 보기/숨기기 기능 구현
+
+### 반응형
+- [x] **반응형 디자인 적용 완료** (PC 1200px+, Tablet 768px~1199px, Mobile 375px~767px)
 
 ---
 
@@ -120,6 +171,7 @@ footer - 링크, SNS
 ### [로그인/회원가입]
 - [x] 로그인 페이지, 회원가입 페이지 로고 위 상단 여백 동일  
 - [x] 비밀번호 input 요소 오른쪽에 눈모양 아이콘 추가  
+- [x] 비밀번호 토글 버튼 정렬 최적화 (wrapper 적용)
 - [ ] 비밀번호 보기/숨기기 기능 구현 (예정)
 
 ### [반응형]
@@ -133,3 +185,30 @@ footer - 링크, SNS
 
 ### [심화]
 - [x] 브라우저 크기에 따라 모든 크기 관련 값이 유동적으로 변환
+- [x] CSS 변수를 통한 스타일 시스템 구축
+- [x] BEM 네이밍 컨벤션 적용
+- [x] 구조적 HTML (시맨틱 태그 사용)
+
+---
+
+## 주요 개선 사항
+
+### 1. CSS 구조 개선
+- `common.css` 추가로 공통 컴포넌트 분리
+- `base.css`에서 reset, font import 처리
+- 파일별 역할 명확화
+
+### 2. 페이지별 헤더 분리
+- 메인: `.page-header` (sticky positioning)
+- 폼: `.form-header` (중앙 정렬)
+- 중복 방지 및 유지보수성 향상
+
+### 3. CSS 변수 확대
+- 색상: `--color-blue`, `--color-blue-light`, `--color-white`
+- 간격: `--spacing-form-header-top`, `--spacing-form-gap`
+- 하드코딩 색상 제거
+
+### 4. 비밀번호 토글 구조
+- `.form-block__input-wrapper` 추가
+- 버튼 정확한 중앙 정렬
+- 베스트 프랙티스 적용

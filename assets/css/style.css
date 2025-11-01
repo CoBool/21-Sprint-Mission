@@ -1,26 +1,26 @@
 /*
 ==============================
-  헤더 스타일
+  메인 페이지 헤더 스타일
 ==============================
 */
 
-.header {
+.page-header {
   position: sticky;
   top: 0;
   left: 0;
   padding: clamp(9px, 0.83vw, 16px) 0;
-  background-color: #fff;
+  background-color: var(--color-white);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
 
-.header .container {
+.page-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.header__link {
+.page-header__link {
   display: flex;
   align-items: center;
   font-family: "ROKAFSans";
@@ -30,18 +30,22 @@
   gap: 8px;
 }
 
-.header__logo-img {
+.page-header__logo-img {
   max-width: 40px;
   display: none;
 }
 
-.header__login-btn {
+.page-header__logo-text {
+  display: inline-block;
+}
+
+.page-header__login-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
   background-color: var(--color-blue);
-  color: #fff;
+  color: var(--color-white);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -53,6 +57,7 @@
 */
 
 .hero {
+  position: relative;
   background-color: var(--color-banner-bg);
 }
 
@@ -71,7 +76,6 @@
   flex-direction: column;
   gap: 16px;
   align-items: center;
-  letter-spacing: -1px;
   word-break: keep-all;
   text-align: center;
 }
@@ -79,30 +83,45 @@
 .hero__title {
   font-weight: bold;
   font-size: clamp(32px, 2.1vw, 40px);
+  color: var(--color-gray-700);
   line-height: 1.4;
 }
 
 .hero__link {
   display: flex;
   width: 100%;
-  max-width: 240px;
+  max-width: 350px;
   align-items: center;
   justify-content: center;
-  font-size: clamp(14px, 1.042vw, 16px);
-  padding: clamp(8px, 0.83vw, 16px) clamp(12px, 1.5vw, 32px);
+  font-size: clamp(18px, 1.042vw, 20px);
+  padding: clamp(12px, 3.2vw, 16px) clamp(70px, 18.933vw, 125px);
   background-color: var(--color-blue);
-  color: #fff;
+  color: var(--color-white);
   border-radius: 40px;
+  white-space: nowrap;
 }
 
 .hero__image {
-  overflow: hidden;
+  position: relative;
   display: flex;
   align-items: flex-end;
+  justify-content: center;
+  margin: 0 -16px;
+  width: calc(100% + 32px);
+  background-position: bottom center;
+  background-repeat: no-repeat;
 }
 
-.hero__img {
-  max-width: 100%;
+.hero-first .hero__image {
+  aspect-ratio: 448 / 228;
+  background-image: url('../images/hero-image.png');
+  background-size: cover;
+}
+
+.hero-second .hero__image {
+  aspect-ratio: 375 / 217;
+  background-image: url('../images/hero-image2.png');
+  background-size: cover;
 }
 
 /*
@@ -130,6 +149,9 @@
   display: flex;
   flex-direction: column;
   word-break: keep-all;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .card__image {
@@ -140,6 +162,7 @@
 
 .card__img {
   max-width: 100%;
+  width: 100%;
 }
 
 .card__text {
@@ -226,20 +249,16 @@
 ==============================
 */
 @media (min-width: 768px) {
-  .container {
-    padding: 0 24px;
-  }
-
-  .header__logo-img {
+  .page-header__logo-img {
     display: block;
   }
 
-  .hero__link {
-    max-width: 350px;
+  .hero-first .hero__image {
+    aspect-ratio: 744 / 340;
   }
 
-  .hero__image {
-    justify-content: center;
+  .hero-second .hero__image {
+    aspect-ratio: 744 / 397;
   }
 
   .footer__copyright {
@@ -254,10 +273,6 @@
 ==============================
 */
 @media (min-width: 1200px) {
-  .container {
-    padding: 0 10px;
-  }
-
   .hero .container {
     gap: 0;
     padding-top: clamp(50px, 10vw, 200px);
@@ -272,8 +287,16 @@
   }
 
   .hero__image {
-    flex: 1 1 auto;
-    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-first .hero__image {
+    aspect-ratio: 746 / 340;
+  }
+
+  .hero-second .hero__image {
+    aspect-ratio: 746 / 397;
   }
 
   .features {
@@ -289,6 +312,7 @@
 
   .card {
     flex-direction: row;
+    background-color: #FCFCFC;
   }
 
   .feature:nth-child(even) .card {
@@ -296,7 +320,13 @@
   }
 
   .card__image {
+    padding-left: 23.5px;
     flex: 0 0 55%;
+  }
+
+  .feature:nth-child(even) .card__image {
+    padding-left: 0;
+    padding-right: 23.5px;
   }
 
   .card__text {
