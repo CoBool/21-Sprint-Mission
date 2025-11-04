@@ -197,18 +197,31 @@
   display: none;
 }
 
-.form-block__group--error .form-block__error-message {
+.form-block__group.invalid .form-block__error-message {
   display: block;
   color: red;
   font-size: 12px;
   font-weight: 500;
 }
 
-.form-block__group--error .form-block__label {
+.form-block__group.invalid .form-block__label {
   color: red;
 }
 
-.form-block__group--error .form-block__input {
+.form-block__group.invalid .form-block__input {
   border: 2px solid red;
+  outline: none;
+}
+
+.form-block__group.valid .form-block__error-message {
+  display: none;
+}
+
+.form-block__group.valid .form-block__label {
+  color: green;
+}
+
+.form-block__group.valid .form-block__input {
+  border: 2px solid green;
   outline: none;
 }
