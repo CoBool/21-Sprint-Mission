@@ -215,7 +215,23 @@ font.css     → ROKAFSans 폰트
 - 베스트 프랙티스 적용
 
 ### 5. 폼 검증 로직 리팩토링
-- 설정 기반 검증 시스템 구축 (login/signup 분리)
+
+#### 변경 전 (이전 버전)
+- `config` 객체 기반 검증 시스템
+  - `form.dataset.type`으로 login/signup 구분
+  - 각 필드별 `validator` 함수와 `isInvalid` 플래그로 상태 관리
+  - `validation.js`의 함수들(`validateEmail`, `validatePassword` 등) 직접 사용
+- 필드별 개별 메시지 관리 (`messages.email.required`, `messages.email.invalid` 등)
+- 에러 클래스: `form-block__group--error`
+
+#### 변경 후 (현재 버전)
+- **선언적 검증 시스템**: `data-validate` 속성 기반
+  - HTML에서 `data-validate="required|email|max:50"` 형태로 검증 규칙 선언
+  - `rules` 객체로 규칙 기반 검증 (required, email, min, max, match)
+  - `validateInput()` 함수로 각 input을 독립적으로 검증
+- **규칙별 통합 메시지**: 함수 지원으로 동적 메시지 생성
+- **개선된 상태 관리**: `invalid`/`valid` 클래스로 시각적 피드백
+- **버튼 상태 관리**: `updateButtonState()` 함수로 모든 필드 검증 후 버튼 활성화/비활성화
 - 반복 코드 제거 및 헬퍼 함수 활용
 - 실시간 검증 및 버튼 활성화/비활성화 처리
 - 비밀번호 보기/숨기기 토글 기능 구현
