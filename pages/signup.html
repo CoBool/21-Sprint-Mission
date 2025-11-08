@@ -1,87 +1,184 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/common.css">
-    <link rel="stylesheet" href="../assets/css/form.css">
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <link rel="stylesheet" href="../assets/css/form.css" />
 
     <title>회원가입 | 판다마켓</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="wrap">
-        <div class="form">
-            <div class="container">
-                <header class="form-header">
-                    <div class="form-header__logo">
-                        <a href="../index.html" class="form-header__link">
-                            <img class="form-header__logo-img" src="../assets/images/logo.png" alt="판다마켓">
-                            <span class="form-header__logo-text">판다마켓</span>
-                        </a>
-                    </div>
-                </header>
-
-                <form class="form-block" action="/" method="POST">
-                    <div class="form-block__group">
-                        <label class="form-block__label" for="email">이메일</label>
-                        <input class="form-block__input" type="email" id="email" name="email" placeholder="이메일을 입력해주세요." data-validate="required|email|max:50">
-                        <span class="form-block__error-message"></span>
-                    </div>
-                    <div class="form-block__group">
-                        <label class="form-block__label" for="nickname">닉네임</label>
-                        <input class="form-block__input" type="text" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요." data-validate="required|min:2|max:20">
-                        <span class="form-block__error-message"></span>
-                    </div>
-                    <div class="form-block__group">
-                        <label class="form-block__label" for="password">비밀번호</label>
-                        <div class="form-block__input-wrapper">
-                            <input class="form-block__input" type="password" id="password" name="password" placeholder="비밀번호를 입력해주세요." data-validate="required|min:8|max:20">
-                            <button class="form-block__button-eye" type="button">
-                                <img class="form-block__button-eye-icon" src="../assets/images/icons/eye.svg" alt="눈 열기">
-                            </button>
-                        </div>
-                        <span class="form-block__error-message"></span>
-                    </div>
-                    <div class="form-block__group">
-                        <label class="form-block__label" for="passwordConfirm">비밀번호 확인</label>
-                        <div class="form-block__input-wrapper">
-                            <input class="form-block__input" type="password" id="passwordConfirm" name="passwordConfirm" placeholder="비밀번호를 확인해주세요." data-validate="required|match:password">
-                            <button class="form-block__button-eye" type="button">
-                                <img class="form-block__button-eye-icon" src="../assets/images/icons/eye.svg" alt="눈 열기">
-                            </button>
-                        </div>
-                        <span class="form-block__error-message"></span>
-                    </div>
-                    <button class="form-block__button" type="submit" disabled>회원가입</button>
-                </form>
-
-                <div class="oauth-block">
-                    <span class="oauth-block__text">간편 로그인하기</span>
-
-                    <div class="oauth-block__group">
-                        <a class="oauth-block__button" href="https://www.google.com/" target="_blank">
-                            <img class="oauth-block__icon" src="../assets/images/icons/google.png" alt="Google">
-                            <span class="sr-only">Google로 로그인</span>
-                        </a>
-                        <a class="oauth-block__button" href="https://www.kakaocorp.com/page/" target="_blank">
-                            <img class="oauth-block__icon" src="../assets/images/icons/kakao.png" alt="카카오">
-                            <span class="sr-only">카카오로 로그인</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="form__footer">
-                    이미 회원이신가요? <a href="./login.html" class="form__footer-link">로그인</a>
-                </div>
+      <div class="form">
+        <div class="container">
+          <header class="form-header">
+            <div class="form-header__logo">
+              <a href="../index.html" class="form-header__link">
+                <img
+                  class="form-header__logo-img"
+                  src="../assets/images/logo.png"
+                  alt="판다마켓"
+                />
+                <span class="form-header__logo-text">판다마켓</span>
+              </a>
             </div>
-        </div>
-    </div>
-    <script src="../assets/utility/validation.js"></script>
-    <script src="../assets/js/form.js"></script>
-</body>
+          </header>
 
+          <form
+            class="form-block"
+            id="signupForm"
+            action="#"
+            method="POST"
+            onsubmit="return false;"
+          >
+            <div class="form-block__group">
+              <label class="form-block__label" for="email">이메일</label>
+              <input
+                class="form-block__input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@email.com"
+                aria-describedby="email-error"
+                autocomplete="email"
+              />
+              <span
+                id="email-error"
+                class="form-block__error-message"
+                role="alert"
+              ></span>
+            </div>
+            <div class="form-block__group">
+              <label class="form-block__label" for="nickname">닉네임</label>
+              <input
+                class="form-block__input"
+                type="text"
+                id="nickname"
+                name="nickname"
+                placeholder="닉네임을 입력해주세요."
+                aria-describedby="nickname-error"
+                autocomplete="off"
+              />
+              <span
+                id="nickname-error"
+                class="form-block__error-message"
+                role="alert"
+              ></span>
+            </div>
+            <div class="form-block__group">
+              <label class="form-block__label" for="password">비밀번호</label>
+              <div class="form-block__input-wrapper">
+                <input
+                  class="form-block__input"
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="비밀번호를 입력해주세요."
+                  aria-describedby="password-error"
+                />
+                <button
+                  class="form-block__button-eye"
+                  type="button"
+                  aria-label="비밀번호 보기 전환"
+                >
+                  <img
+                    class="form-block__button-eye-icon"
+                    src="../assets/images/icons/eye.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+              <span
+                id="password-error"
+                class="form-block__error-message"
+                role="alert"
+              ></span>
+            </div>
+            <div class="form-block__group">
+              <label class="form-block__label" for="passwordConfirm"
+                >비밀번호 확인</label
+              >
+              <div class="form-block__input-wrapper">
+                <input
+                  class="form-block__input"
+                  type="password"
+                  id="passwordConfirm"
+                  name="passwordConfirm"
+                  placeholder="비밀번호를 확인해주세요."
+                  aria-describedby="passwordConfirm-error"
+                />
+                <button
+                  class="form-block__button-eye"
+                  type="button"
+                  aria-label="비밀번호 보기 전환"
+                >
+                  <img
+                    class="form-block__button-eye-icon"
+                    src="../assets/images/icons/eye.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </button>
+              </div>
+              <span
+                id="passwordConfirm-error"
+                class="form-block__error-message"
+                role="alert"
+              ></span>
+            </div>
+            <button
+              class="form-block__button"
+              type="submit"
+              id="submitButton"
+              disabled
+            >
+              회원가입
+            </button>
+          </form>
+
+          <div class="oauth-block">
+            <span class="oauth-block__text">간편 로그인하기</span>
+
+            <div class="oauth-block__group">
+              <a
+                class="oauth-block__button"
+                href="https://www.google.com/"
+                target="_blank"
+              >
+                <img
+                  class="oauth-block__icon"
+                  src="../assets/images/icons/google.png"
+                  alt="Google"
+                />
+                <span class="sr-only">Google로 로그인</span>
+              </a>
+              <a
+                class="oauth-block__button"
+                href="https://www.kakaocorp.com/page/"
+                target="_blank"
+              >
+                <img
+                  class="oauth-block__icon"
+                  src="../assets/images/icons/kakao.png"
+                  alt="카카오"
+                />
+                <span class="sr-only">카카오로 로그인</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="form__footer">
+            이미 회원이신가요?
+            <a href="./login.html" class="form__footer-link">로그인</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/js/form.js" type="module"></script>
+  </body>
 </html>
