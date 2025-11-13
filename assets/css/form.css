@@ -45,6 +45,10 @@
   display: inline-block;
 }
 
+.form-header__logo-text {
+    display: inline-block;
+}
+
 /*
 ==============================
   폼 블록 스타일
@@ -72,6 +76,10 @@
 
 .form-block__input-wrapper {
   position: relative;
+}
+
+.form-block__input-wrapper {
+    position: relative;
 }
 
 .form-block__input {
@@ -139,6 +147,12 @@
   cursor: not-allowed;
 }
 
+.form-block__button:disabled {
+  background-color: var(--color-gray-400);
+  color: var(--color-white);
+  cursor: not-allowed;
+}
+
 /*
 ==============================
     간편 로그인 블록
@@ -184,6 +198,45 @@
 .form__footer-link {
   color: var(--color-blue);
   text-decoration: none;
+}
+
+/*
+==============================
+    폼 그룹 에러 스타일
+==============================
+*/
+
+.form-block__error-message {
+  display: none;
+}
+
+.form-block__group.invalid .form-block__error-message {
+  display: block;
+  color: red;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.form-block__group.invalid .form-block__label {
+  color: red;
+}
+
+.form-block__group.invalid .form-block__input {
+  border: 2px solid red;
+  outline: none;
+}
+
+.form-block__group.valid .form-block__error-message {
+  display: none;
+}
+
+.form-block__group.valid .form-block__label {
+  color: green;
+}
+
+.form-block__group.valid .form-block__input {
+  border: 2px solid green;
+  outline: none;
 }
 
 /*
