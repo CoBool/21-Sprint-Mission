@@ -28,10 +28,14 @@ assets/
   images/              이미지
     icons/             소셜 로그인 아이콘
   js/
-    - form.js          폼 검증 및 이벤트 처리
-    - script.js        주요 로직
+    - form.js          폼 진입 시 초기화 및 이벤트 연결
+    - script.js        공통 스크립트 (비밀번호 토글 등)
+  schemas/
+    - login.js         로그인 폼 검증 스키마
+    - signup.js        회원가입 폼 검증 스키마
   utility/
-    - validation.js    폼 검증 유틸리티 함수
+    - form-ui.js       폼 에러 메시지 UI 유틸리티
+    - zod.js           경량 Zod 스타일 검증 라이브러리
 
 pages/
   - faq.html           FAQ 페이지
@@ -146,7 +150,7 @@ font.css     → ROKAFSans 폰트
 - [ ] `privacy.html`: 개인정보처리방침 콘텐츠 작성
 
 ### JavaScript
-- [x] 폼 검증 로직 완성
+- [x] Zod 스타일 스키마 기반 폼 검증 로직 구축
 - [x] 비밀번호 보기/숨기기 기능 구현
 
 ### 반응형
@@ -216,15 +220,14 @@ font.css     → ROKAFSans 폰트
 
 ### 5. 폼 검증 로직 리팩토링
 
-#### 변경 전 (이전 버전)
-- `config` 객체 기반 검증 시스템
-  - `form.dataset.type`으로 login/signup 구분
-  - 각 필드별 `validator` 함수와 `isInvalid` 플래그로 상태 관리
-  - `validation.js`의 함수들(`validateEmail`, `validatePassword` 등) 직접 사용
-- 필드별 개별 메시지 관리 (`messages.email.required`, `messages.email.invalid` 등)
-- 에러 클래스: `form-block__group--error`
+#### v3 (현재)
+- `assets/utility/zod.js`에서 문자열·숫자·객체 스키마와 체이닝 가능한 `refine` 규칙을 제공하는 경량 Zod 스타일 라이브러리를 구축하여 공통 검증 규칙을 집중화
+- `assets/schemas/login.js`, `assets/schemas/signup.js`에서 폼별 스키마를 선언적으로 정의하고 `errors`·`touched`·`validated` 상태를 추적하며 blur/input/submit 흐름을 제어
+- `assets/utility/form-ui.js`를 통해 에러 메시지와 `valid`/`invalid` 클래스를 일관되게 갱신해 UI 반영을 단순화
+- `assets/js/form.js`가 DOMContentLoaded 시 검증 초기화와 비밀번호 토글 버튼 바인딩을 담당하도록 역할을 명확히 분리
+- 기존 `validation.js` 기반 절차형 검증 로직을 제거하고, 스키마 중심 구조로 유지보수성과 재사용성을 강화
 
-#### 변경 후 (현재 버전)
+#### v2
 - **선언적 검증 시스템**: `data-validate` 속성 기반
   - HTML에서 `data-validate="required|email|max:50"` 형태로 검증 규칙 선언
   - `rules` 객체로 규칙 기반 검증 (required, email, min, max, match)
@@ -236,3 +239,11 @@ font.css     → ROKAFSans 폰트
 - 실시간 검증 및 버튼 활성화/비활성화 처리
 - 비밀번호 보기/숨기기 토글 기능 구현
 - null 안전성 체크 및 에러 처리 개선
+
+#### v1
+- `config` 객체 기반 검증 시스템
+  - `form.dataset.type`으로 login/signup 구분
+  - 각 필드별 `validator` 함수와 `isInvalid` 플래그로 상태 관리
+  - `validation.js`의 함수들(`validateEmail`, `validatePassword` 등) 직접 사용
+- 필드별 개별 메시지 관리 (`messages.email.required`, `messages.email.invalid` 등)
+- 에러 클래스: `form-block__group--error`
