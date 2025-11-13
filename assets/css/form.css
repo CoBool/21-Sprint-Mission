@@ -95,7 +95,7 @@
 }
 
 .form-block__button-eye-icon {
-  pointer-events: none;
+  /* pointer-events: none; */
   width: 24px;
   height: 24px;
 }
