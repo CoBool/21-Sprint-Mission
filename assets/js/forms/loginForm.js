@@ -19,7 +19,9 @@ export function loginForm() {
   const $form = document.getElementById('loginForm');
 
   if ( !$form ) return;
-  const validator = createValidator(loginSchema, $form);
+  const validator = createValidator(loginSchema, $form, (data) => {
+    console.log(data);
+  });
 
   $form.addEventListener('blur', validator.handleBlur, true);
   $form.addEventListener('input', validator.handleInput, true);

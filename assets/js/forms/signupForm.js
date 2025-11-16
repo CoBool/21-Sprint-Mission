@@ -25,7 +25,9 @@ export function signupForm() {
   const $form = document.getElementById('signupForm');
 
   if ( !$form ) return;
-  const validator = createValidator(signupSchema, $form);
+  const validator = createValidator(signupSchema, $form, (data) => {
+    console.log(data);
+  });
 
   $form.addEventListener('blur', validator.handleBlur, true);
   $form.addEventListener('input', validator.handleInput, true);
