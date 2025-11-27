@@ -1,0 +1,45 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: clamp(9px, 0.83vw, 16px) 0;
+  background-color: var(--color-white);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logoImage--pc {
+  width: 153px;
+  display: none;
+}
+
+.header__logoImage--mobile {
+  display: block;
+}
+
+.header__loginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .header__logoImage--pc {
+    display: block;
+  }
+
+  .header__logoImage--mobile {
+    display: none;
+  }
+}
