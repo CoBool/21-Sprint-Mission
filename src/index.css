@@ -1,0 +1,110 @@
+/*
+==============================
+  기본 초기화 및 공통 변수
+  모든 페이지에서 사용하는 기본 설정만 포함
+==============================
+*/
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+}
+
+:root {
+  /* Primary */
+  --color-primary-100: #3692FF;
+  --color-primary-200: #1967D6;
+  --color-primary-300: #1251AA;
+
+  /* Error */
+  --color-error-500: #F74747;
+
+  /* Gray scale */
+  --color-gray-900: #111827;
+  --color-gray-800: #1F2937;
+  --color-gray-700: #374151;
+  --color-gray-600: #4B5563;
+  --color-gray-500: #6B7280;
+  --color-gray-400: #9CA3AF;
+  --color-gray-300: #D1D5DB;
+  --color-gray-200: #E5E7EB;
+  --color-gray-100: #F3F4F6;
+  --color-gray-50:  #F9FAFB;
+
+  /* Layout */
+  --container-max-width: 1140px;
+  --container-padding: 16px;
+
+  /* Typography */
+  --font-family-base: "Pretendard Variable", sans-serif;
+  --font-size-base: 16px;
+
+  --text-3xl-size: 32px;
+  --text-3xl-line: 42px;
+
+  --text-2xl-size: 24px;
+  --text-2xl-line: 32px;
+
+  --text-xl-size: 20px;
+  --text-xl-line: 32px;
+
+  --text-lg-size: 16px;
+  --text-lg-line: 26px;
+
+  --text-md-size: 14px;
+  --text-md-line: 24px;
+
+  --text-sm-size: 13px;
+  --text-sm-line: 22px;
+
+  --text-xs-size: 12px;
+  --text-xs-line: 18px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+}
+
+
+/*
+==============================
+  공통 컴포넌트
+  모든 페이지에서 공통으로 사용하는 컴포넌트 스타일
+==============================
+*/
+
+/*
+==============================
+  레이아웃 스타일
+==============================
+*/
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  max-width: var(--container-max-width);
+}
+
+/*
+==============================
+  미디어 쿼리
+==============================
+*/
+
+/* 태블릿 이상 */
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 24px;
+  }
+}
+
+/* 데스크탑 이상 */
+@media (min-width: 1200px) {
+  :root {
+    --container-padding: 10px;
+  }
+}
