@@ -1,0 +1,120 @@
+.hero {
+  position: relative;
+  background-color: #cfe5ff;
+}
+
+.hero__container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 10vw, 80px);
+  padding-top: clamp(40px, 8vw, 120px);
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 0;
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  word-break: keep-all;
+  text-align: center;
+}
+
+.hero__title {
+  font-weight: bold;
+  font-size: clamp(32px, 2.1vw, 40px);
+  color: var(--color-gray-700);
+  line-height: 1.4;
+}
+
+.hero__link {
+  display: flex;
+  width: 100%;
+  max-width: 350px;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(18px, 1.042vw, 20px);
+  padding: clamp(12px, 3.2vw, 16px) clamp(70px, 18.933vw, 125px);
+  background-color: var(--color-primary-100);
+  color: var(--color-gray-100);
+  border-radius: 40px;
+  white-space: nowrap;
+}
+
+.hero__image {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0 -16px;
+  width: calc(100% + 32px);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+
+.hero-first .hero__image {
+  aspect-ratio: 448 / 228;
+  background-image: url('../../assets/images/home/hero-image.png');
+  background-size: cover;
+}
+
+.hero-second .hero__image {
+  aspect-ratio: 375 / 217;
+  background-image: url('../../assets/images/home/hero-image2.png');
+  background-size: cover;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+==============================
+  미디어 쿼리 태블릿 스타일
+==============================
+*/
+@media (min-width: 768px) {
+  .hero-first .hero__image {
+    aspect-ratio: 744 / 340;
+  }
+
+  .hero-second .hero__image {
+    aspect-ratio: 744 / 397;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero__container {
+    gap: 0;
+    padding-top: clamp(50px, 10vw, 200px);
+    flex-direction: row;
+  }
+
+  .hero__text {
+    text-align: left;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 30%;
+  }
+
+  .hero__image {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-first .hero__image {
+    aspect-ratio: 746 / 340;
+  }
+
+  .hero-second .hero__image {
+    aspect-ratio: 746 / 397;
+  }
+
+  .features {
+    gap: 100px;
+    margin: 100px auto;
+  }
+}

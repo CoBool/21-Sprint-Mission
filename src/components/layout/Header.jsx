@@ -31,7 +31,7 @@ export default function Header() {
           </Link>
         </div>
         <nav>
-          <Link to="/items">임시 아이템!!</Link>
+          <Link to="/login" className={styles["header__loginBtn"]}>로그인</Link>
         </nav>
       </div>
     </header>

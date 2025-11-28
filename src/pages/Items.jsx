@@ -2,111 +2,230 @@
  * Items 페이지
  * 아이템 목록 페이지
  *
- *
- * 미션4 까지는 container padding 조정해줬는데 이번 미션은 또 수정이안되있는데...
- * axios 없이 일단 fetch로 먼저 작업했으니 리팩토링 필요.
- * 디자인이고 뭐고 일단 데이터부터 출력하는 방향으로 처리.
- *
  * @returns {JSX.Element} Items 페이지
  */
 
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 
-import { useState, useEffect } from 'react';
+import styles from "./Items/Items.module.css";
+
+import { useEffect, useState } from "react";
+
+import { instance } from "../lib/axios";
+
+// 페이지네이션 커스텀 hooks
+import { usePagination } from "../hooks/usePagination";
 
 export default function Items() {
-  const [BestProduct, setBestProduct] = useState([]);
-  const [products, setProduct] = useState([]);
+  const [bestProducts, setBestProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [orderBy, setOrderBy] = useState('recent');
 
-  const handleError = (e) => {
-    console.log(e);
-    console.log(e.currentTarget)
-  }
-
-  const getBestProduct = async() => {
-    try {
-      // 이 부분 일단 대충 가지고와서 리팩토링 해야함.
-      const res = await fetch('https://panda-market-api.vercel.app/products?page=1&pageSize=4&orderBy=favorite');
-      if (res.ok) {
-        const {list} = await res.json();
-        
-        setBestProduct(list);
-      }  
-    } catch (error) {
-      throw new Error(`에러 발생: ${error}`);
-    } finally {
-      // console.log('일단 종료');
-    }
-  }
-
-  const AllProduct = async() => {
-    try {
-      const res = await fetch('https://panda-market-api.vercel.app/products?page=1&pageSize=10');
-      if (res.ok) {
-        const {list} = await res.json();
-        
-        setProduct(list);
-        console.log(list);
-      } else {
-        throw new Error(`에러 발생`);  
-      }
-    } catch (error) {
-      throw new Error(`에러 발생: ${error}`);
-    } finally {
-      // console.log('일단 종료');
-    }
-  }
+  const { hasPrev, pages, hasNext } = usePagination({
+    totalItems: totalCount,
+    currentPage: currentPage,
+    pageSize
+  });
 
   useEffect(() => {
-    // useEffect 내부에서 async가 불가하므로, 즉시실행함수로 async await 처리.
-    getBestProduct()
-    AllProduct();
+    const fetchBestProducts = async () => {
+      try {
+        const { data } = await instance({
+          url: "products",
+          params: {
+            page: 1,
+            pageSize: 4,
+            orderBy: "favorite",
+          },
+        });
+
+        setBestProducts(data.list);
+
+        console.log(data.list);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchBestProducts();
   }, []);
+
+  useEffect(() => {
+    const fetchAllProducts = async () => {
+      try {
+        const { data } = await instance({
+          url: "products",
+          params: {
+            page: currentPage,
+            pageSize: pageSize,
+            orderBy
+          },
+        });
+
+        setAllProducts(data.list);
+        setTotalCount(data.totalCount);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchAllProducts();
+  }, [currentPage, pageSize, orderBy]);
+
+  useEffect(() => {
+    const mobileMedia = window.matchMedia("(max-width: 768px)");
+    const tabletMedia = window.matchMedia(
+      "(min-width: 768px) and (max-width: 1200px)"
+    );
+    const pcMedia = window.matchMedia("(min-width: 1200px)");
+
+    function handleMobileChange(e) {
+      if (e.matches) {
+        setPageSize(4);
+      }
+    }
+
+    function handleTabletChange(e) {
+      if (e.matches) {
+        setPageSize(6);
+      }
+    }
+
+    function handlePCChange(e) {
+      if (e.matches) {
+        setPageSize(10);
+      }
+    }
+
+    handleMobileChange(mobileMedia);
+    handleTabletChange(tabletMedia);
+    handlePCChange(pcMedia);
+
+    mobileMedia.addEventListener("change", handleMobileChange);
+    tabletMedia.addEventListener("change", handleTabletChange);
+    pcMedia.addEventListener("change", handlePCChange);
+  }, []);
+
+  const handlePage = (type, value) => {
+    switch (type) {
+      case "prev":
+        setCurrentPage(prev => prev - 1);
+        break;
+      case "next":
+        setCurrentPage(prev => prev + 1);
+        break;
+      case "number":
+        setCurrentPage(value);
+        break;
+    }
+  };
+
+  const handleImageLoad = (e) => {
+    if (e.target.naturalWidth === 0) {
+      e.target.src = "https://placehold.co/400";
+    }
+  }
+  const handleImageError = (e) => {
+    e.currentTarget.src = "https://placehold.co/400";
+    e.target.onerror = null;
+  }
+
+  const formatPrice = (value) => {
+    return new Intl.NumberFormat("ko-KR").format(value);
+  };
 
   return (
     <>
       <Header />
       <main>
-        <div className="container">
-          <section>
-            <h1>베스트 상품</h1>
-            {BestProduct.map(item => 
-              <div key={item.id}>
-                <div className="이미지 박스">
-                  <img src={item['images'][0]} width="50"/>
+        <div className={`container ${styles['items__container']}`}>
+          <section className={`${styles['section']} ${styles['bestProducts']}`}>
+            <h1 className={`${styles['section__title']}`}>베스트 상품</h1>
+            {bestProducts.map((item) => (
+              <div key={item.id} className={`${styles['section__item']}`}>
+                <div className={`${styles['section__item__imageContainer']}`}>
+                  <img className={`${styles['section__item__image']}`} src={item.images[0]} alt={item.description} onLoad={handleImageLoad} onError={handleImageError} />
                 </div>
-                <div className="제목 들어가는곳">
-                  {item.name} 
-                </div>
-                <div className="가격 들어가는곳">
-                  {item.price}원
-                </div>
-                <div className="좋아요 들어가는곳">
-                  {item.favoriteCount}
+                <div className={`${styles['section__item__text']}`}>
+                  <h3 className={`${styles['section__item__title']}`}>{item.name}</h3>
+                  <p className={`${styles['section__item__description']}`}>{item.description}</p>
+                  <p className={`${styles['section__item__price']}`}>{formatPrice(item.price)}원</p>
+                  <p className={`${styles['section__item__favoriteCount']}`}>
+                    {item.favoriteCount}
+                  </p>
                 </div>
               </div>
-            )}
+            ))}
           </section>
-          <section style={{marginTop: '300px'}}>
-            <h1>전체 상품</h1>
-            {products.map(item => 
-              <div key={item.id} style={{marginBottom: '50px'}}>
-                <div className="이미지 박스">
-                  { !!item['images'].length && <img src={item['images'][0]} width="50" onError={handleError}/> }
-                  
+          <section className={`${styles['section']} ${styles['allProducts']}`}>
+            <div className={`${styles['section__header']}`}>
+              <h1 className={`${styles['section__title']}`}>전체 상품</h1>
+              <div className={`${styles['section__filter']}`}>
+                <ul className={`${styles['section__filter__list']}`}>
+                  <li>
+                    <button className={`${styles['section__filter__button']} ${orderBy === 'recent' ? styles['section__filter__button--active'] : ''}`} onClick={() => {
+                      setOrderBy('recent');
+                    }}>최신순</button>
+                  </li>
+                  <li>
+                    <button className={`${styles['section__filter__button']} ${orderBy === 'favorite' ? styles['section__filter__button--active'] : ''}`} onClick={() => {
+                      setOrderBy('favorite');
+                    }}>인기순</button>
+                  </li>
+                </ul>
+                
+              </div>
+            </div>
+            {allProducts.map((item) => (
+              <div key={item.id} className={`${styles['section__item']}`}>
+                <div className={`${styles['section__item__imageContainer']}`}>
+                  <img className={`${styles['section__item__image']}`} src={item.images[0]} alt={item.description} onLoad={handleImageLoad} onError={handleImageError} />
                 </div>
-                <div className="제목 들어가는곳">
-                  {item.name} 
-                </div>
-                <div className="가격 들어가는곳">
-                  {item.price}원
-                </div>
-                <div className="좋아요 들어가는곳">
-                  {item.favoriteCount}
+                <div className={`${styles['section__item__text']}`}>
+                  <h3 className={`${styles['section__item__title']}`}>{item.name}</h3>
+                  <p className={`${styles['section__item__description']}`}>{item.description}</p>
+                  <p className={`${styles['section__item__price']}`}>{formatPrice(item.price)}원</p>
+                  <p className={`${styles['section__item__favoriteCount']}`}>
+                    {item.favoriteCount}
+                  </p>
                 </div>
               </div>
-            )}
+            ))}
+            <div className={`${styles['pagination__container']}`}>
+              <ul className={`${styles['pagination__list']}`}>
+                {
+                  hasPrev && (
+                    <li>
+                      <button className={`${styles['pagination__button']} ${styles['pagination__item--prev']}`} onClick={() => {
+                        handlePage('prev')
+                      }}>이전페이지</button>
+                    </li>
+                  )
+                }
+                {
+                  pages.map((page) => (
+                    <li key={page}>
+                      <button className={`${styles['pagination__button']} ${page === currentPage ? styles['pagination__item--current'] : ''}`} onClick={() => {
+                        handlePage('number', page)
+                      }}>{page}</button>
+                    </li>
+                  ))
+                }
+                {
+                  hasNext && (
+                    <li>
+                      <button className={`${styles['pagination__button']} ${styles['pagination__item--next']}`} onClick={() => {
+                        handlePage('next')
+                      }}>다음페이지</button>
+                    </li>
+                  )
+                }
+              </ul>
+            </div>
           </section>
         </div>
       </main>

@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   padding: clamp(9px, 0.83vw, 16px) 0;
-  background-color: var(--color-white);
+  background-color: var(--color-gray-50);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   z-index: 100;
 }
@@ -28,8 +28,8 @@
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
-  background-color: var(--color-blue);
-  color: var(--color-white);
+  background-color: var(--color-primary-100);
+  color: var(--color-gray-100);
   border-radius: 8px;
   cursor: pointer;
 }

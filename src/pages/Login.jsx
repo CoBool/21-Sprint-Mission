@@ -1,17 +1,19 @@
 /*
- * Signup 페이지
- * @returns {JSX.Element} Signup 페이지
+ * Login 페이지
+ * RHF 사용하지않음. 그냥 순수 리액트로 구현할 예정..
+ * 추후 리팩토링 필요.
+ * @returns {JSX.Element} Login 페이지
  */
 
-import kakaoIcon from "../../assets/images/icons/kakao_oauth.png";
-import googleIcon from "../../assets/images/icons/google_oauth.png";
+import kakaoIcon from '../assets/images/icons/kakao_oauth.png';
+import googleIcon from '../assets/images/icons/google_oauth.png';
 
-import PandaMarketLogo_PC from "../../assets/images/logo.svg";
+import PandaMarketLogo_PC from '../assets/images/logo.svg';
 
-import styles from "./Auth.module.css";
+import styles from "./Auth/Auth.module.css";
 import { Link } from "react-router";
 
-export default function Signup() {
+export default function Login() {
   return (
     <>
       <div className={styles["form"]}>
@@ -19,11 +21,7 @@ export default function Signup() {
           <header className={styles["form-header"]}>
             <div className={styles["form-header__logo"]}>
               <Link to="/" className={styles["form-header__link"]}>
-                <img
-                  src={PandaMarketLogo_PC}
-                  alt="판다마켓 로고"
-                  className={styles["form-header__logo-image"]}
-                />
+                <img src={PandaMarketLogo_PC} alt="판다마켓 로고" className={styles["form-header__logo-image"]} />
               </Link>
             </div>
           </header>
@@ -49,39 +47,19 @@ export default function Signup() {
               ></span>
             </div>
 
-            {/* 닉네임 */}
-            <div className={styles["form-block__group"]}>
-              <label className={styles["form-block__label"]} htmlFor="nickname">
-                닉네임
-              </label>
-              <input
-                className={styles["form-block__input"]}
-                type="text"
-                id="nickname"
-                name="nickname"
-                placeholder="닉네임을 입력해주세요."
-                aria-describedby="nickname-error"
-              />
-              <span
-                id="nickname-error"
-                className={styles["form-block__error-message"]}
-                role="alert"
-              ></span>
-            </div>
-
-            {/* 비밀번호 입력 */}
+            {/* 비밀번호 */}
             <div className={styles["form-block__group"]}>
               <label className={styles["form-block__label"]} htmlFor="password">
                 비밀번호
               </label>
               <input
-                className={styles["form-block__input"]}
-                type="password"
-                id="password"
-                name="password"
-                placeholder="비밀번호를 입력해주세요."
-                aria-describedby="password-error"
-              />
+                  className={styles["form-block__input"]}
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="비밀번호를 입력해주세요."
+                  aria-describedby="password-error"
+                />
               <span
                 id="password-error"
                 className={styles["form-block__error-message"]}
@@ -89,32 +67,12 @@ export default function Signup() {
               ></span>
             </div>
 
-            {/* 비밀번호 확인 */}
-            <div className={styles["form-block__group"]}>
-              <label
-                className={styles["form-block__label"]}
-                htmlFor="passwordConfirm"
-              >
-                비밀번호 확인
-              </label>
-              <input
-                className={styles["form-block__input"]}
-                type="password"
-                id="passwordConfirm"
-                name="passwordConfirm"
-                placeholder="비밀번호를 확인해주세요."
-                aria-describedby="passwordConfirm-error"
-              />
-              <span
-                id="passwordConfirm-error"
-                className={styles["form-block__error-message"]}
-                role="alert"
-              ></span>
-            </div>
-
             {/* 제출 */}
-            <button className={styles["form-block__button"]} type="submit">
-              회원가입
+            <button
+              className={styles["form-block__button"]}
+              type="submit"
+            >
+              로그인
             </button>
           </form>
 
@@ -148,9 +106,9 @@ export default function Signup() {
           </div>
 
           <div className={styles["form__footer"]}>
-            이미 회원이신가요?
-            <Link to="/login" className={styles["form__footer-link"]}>
-              로그인
+            판다마켓이 처음이신가요?
+            <Link to="/signup" className={styles["form__footer-link"]}>
+              회원가입
             </Link>
           </div>
         </div>
