@@ -1,0 +1,54 @@
+.footer {
+  background-color: var(--color-gray-900);
+  padding: 32px 0;
+  font-size: 16px;
+  color: var(--color-gray-200);
+}
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+.footer__copyright {
+  flex: 1 0 100%;
+  order: 3;
+}
+
+.footer__nav {
+  display: flex;
+  gap: 30px;
+}
+
+.footer__nav-link {
+  color: var(--color-gray-200);
+}
+
+.footer__social {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__social-link {
+  display: block;
+}
+
+.footer__social-icon {
+  display: block;
+}
+
+/*
+==============================
+  미디어 쿼리 태블릿 스타일
+==============================
+*/
+@media (min-width: 768px) {
+  .footer__copyright {
+    flex: unset;
+    order: unset;
+  }
+}
+

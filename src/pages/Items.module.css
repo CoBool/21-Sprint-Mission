@@ -1,0 +1,136 @@
+/*
+==============================
+  Items 스타일
+==============================
+*/
+.items__container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 17px;
+  padding-bottom: 35px;
+}
+
+.items__section {
+  display: flex;
+  flex-direction: column;
+}
+
+.items__section__title {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-xl-size);
+  line-height: var(--text-xl-line);
+  margin-bottom: 16px;
+}
+
+.items__section__lists {
+  display: grid;
+}
+
+.items__section--best .items__section__lists {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.items__section--all .items__section__lists {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 8px;
+}
+
+.items__section__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title create"
+    "search sort";
+  row-gap: 12px;
+  column-gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* 각 요소 매핑 */
+.items__section--all .items__section__title {
+  grid-area: title;
+}
+
+.items__section--all .items__section__controls__search__container {
+  grid-area: search;
+  width: 100%;
+  min-width: 0;
+}
+
+.items__section--all .items__section__controls__button__container {
+  grid-area: create;
+}
+
+.items__section--all .items__section__sort__container {
+  grid-area: sort;
+  width: 42px; /* 고정 크기 */
+  justify-self: end;
+}
+
+.items__section__controls__search__input {
+  width: 100%;
+  padding: 12px 20px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--text-lg-size);
+  line-height: var(--text-lg-line);
+  color: var(--color-gray-800);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  background-color: var(--color-gray-100);
+}
+
+.items__section__controls__button {
+  width: 133px;
+  padding: 12px 0;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-lg-size);
+  line-height: var(--text-lg-line);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--color-primary-100);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .items__container {
+    padding-top: 24px;
+    padding-bottom: 58px;
+    gap: 40px;
+  }
+
+  .items__section--best .items__section__lists {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .items__section--all .items__section__lists {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 16px;
+  }
+
+  .items__section__header {
+    grid-template-columns: auto 1fr minmax(242px, 1fr) auto;
+    grid-template-areas: "title . search create sort";
+    column-gap: 16px;
+    align-items: center;
+  }
+
+  .items__section--all .items__section__sort__container {
+    width: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .items__section--best .items__section__lists {
+    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .items__section--all .items__section__lists {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px 24px;
+  }
+}
