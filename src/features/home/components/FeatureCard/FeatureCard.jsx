@@ -1,6 +1,6 @@
 import styles from './FeatureCard.module.css';
 
-export function FeatureCard({ src, alt, label, title, description, reverse = false }) {
+export default function FeatureCard({ src, alt, label, title, description, reverse = false }) {
   return (
     <section className={`${styles.feature} ${reverse ? styles.reverse : ""}`}>
       <div className={`${styles.feature__container} container`}>
