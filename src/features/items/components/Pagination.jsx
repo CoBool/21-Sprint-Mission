@@ -1,4 +1,5 @@
-import styles from "./lists/lists.module.css";
+import styles from "./pagination.module.css";
+import ArrowIcon from "../../../assets/images/icons/arrow.png";
 
 export default function Pagination({
   currentPage,
@@ -13,10 +14,11 @@ export default function Pagination({
         {hasPrevPage && (
           <li>
             <button
-              className={`${styles["pagination__button"]} ${styles["pagination__item--prev"]}`}
+              className={`${styles["pagination__button"]} ${styles["pagination__button--prev"]}`}
               onClick={() => onPageChange('prev')}
+              aria-label="이전페이지"
             >
-              이전페이지
+              <img src={ArrowIcon} alt="이전페이지" />
             </button>
           </li>
         )}
@@ -24,7 +26,7 @@ export default function Pagination({
           <li key={page}>
             <button
               className={`${styles["pagination__button"]} ${
-                page === currentPage ? styles["pagination__item--current"] : ""
+                page === currentPage ? styles["pagination__button--current"] : ""
               }`}
               onClick={() => onPageChange('number', page)}
             >
@@ -35,10 +37,11 @@ export default function Pagination({
         {hasNextPage && (
           <li>
             <button
-              className={`${styles["pagination__button"]} ${styles["pagination__item--next"]}`}
+              className={`${styles["pagination__button"]} ${styles["pagination__button--next"]}`}
               onClick={() => onPageChange('next')}
+              aria-label="다음페이지"
             >
-              다음페이지
+              <img src={ArrowIcon} alt="다음페이지" />
             </button>
           </li>
         )}

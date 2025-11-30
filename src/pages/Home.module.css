@@ -56,13 +56,13 @@
 
 .hero-first .hero__image {
   aspect-ratio: 448 / 228;
-  background-image: url('../../assets/images/home/hero-image.png');
+  background-image: url('../assets/images/home/hero-image.png');
   background-size: cover;
 }
 
 .hero-second .hero__image {
   aspect-ratio: 375 / 217;
-  background-image: url('../../assets/images/home/hero-image2.png');
+  background-image: url('../assets/images/home/hero-image2.png');
   background-size: cover;
 }
 

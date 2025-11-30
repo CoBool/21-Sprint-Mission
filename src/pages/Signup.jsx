@@ -8,7 +8,7 @@ import googleIcon from '../assets/images/icons/google_oauth.png';
 
 import PandaMarketLogo_PC from '../assets/images/logo.svg';
 
-import styles from "./Auth/Auth.module.css";
+import styles from "./Auth.module.css";
 import { Link } from "react-router";
 
 export default function Signup() {

@@ -26,17 +26,26 @@ import { instance } from '../../../lib/axios';
  * @param {number} page 페이지 번호 (1부터 시작)
  * @param {number} pageSize 한 페이지에 가져올 아이템 수
  * @param {string} orderBy 정렬 기준 (예: "recent", "favorite")
+ * @param {string} search 검색어
  * @returns {Promise<any>} 서버에서 받아온 데이터 객체
  */
-export async function fetchItems(page, pageSize, orderBy) {
+export async function fetchItems(page, pageSize, orderBy, search = "") {
   const { data } = await instance({
     url: "products",
-    params: {
-      page,
-      pageSize,
-      orderBy,
-    },
+    params: { page, pageSize, orderBy, search },
   });
+  return data;
+}
 
+/**
+ * 상품 상세 정보를 서버에서 요청합니다.
+ *
+ * @param {number} id 상품 ID
+ * @returns {Promise<any>} 서버에서 받아온 데이터 객체
+ */
+export async function fetchItem(id) {
+  const { data } = await instance({
+    url: `products/${id}`,
+  });
   return data;
 }

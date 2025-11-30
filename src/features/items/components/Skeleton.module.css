@@ -1,0 +1,100 @@
+/* 스켈레톤 UI 스타일 */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-100) 25%,
+    var(--color-gray-50) 50%,
+    var(--color-gray-100) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 12px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton--text {
+  height: 28px;
+  width: 120px;
+}
+
+.skeleton--search {
+  height: 48px;
+  width: 100%;
+  grid-area: search;
+}
+
+.skeleton--button {
+  height: 48px;
+  width: 133px;
+  grid-area: create;
+}
+
+.skeleton--sort {
+  height: 48px;
+  width: 42px;
+  grid-area: sort;
+  justify-self: end;
+}
+
+.skeleton__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton--image {
+  aspect-ratio: 1/1;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: var(--color-gray-100);
+}
+
+.skeleton__item__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton--line {
+  height: 16px;
+  border-radius: 4px;
+}
+
+.skeleton--title {
+  width: 80%;
+  height: 20px;
+}
+
+.skeleton--price {
+  width: 60%;
+  height: 24px;
+}
+
+.skeleton--favorite {
+  width: 40%;
+  height: 16px;
+}
+
+.skeleton--pagination {
+  height: 40px;
+  width: 200px;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .skeleton--search {
+    grid-area: search;
+  }
+  
+  .skeleton--sort {
+    width: auto;
+  }
+}

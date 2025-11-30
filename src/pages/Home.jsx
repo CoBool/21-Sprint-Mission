@@ -3,7 +3,7 @@ import Footer from "../components/layout/Footer";
 
 import { Link } from "react-router";
 
-import styles from "./Home/Home.module.css";
+import styles from "./Home.module.css";
 import FeatureCard from '../features/home/components/FeatureCard/FeatureCard'
 
 import hotImage from '../assets/images/home/hot-item.png';
