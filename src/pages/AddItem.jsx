@@ -1,7 +1,11 @@
 export default function AddItem() {
   return (
     <>
-      <h1>AddItem</h1>
+      <main>
+        <section className={`container`}>
+          <h1>AddItem</h1>
+        </section>
+      </main>
     </>
   )
 }
