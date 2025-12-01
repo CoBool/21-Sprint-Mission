@@ -1,47 +1,76 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import Home from './pages/Home.jsx';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
-import Items from './pages/Items.jsx';
-import AddItem from './pages/AddItem.jsx';
-import ItemDetail from './pages/ItemDetail.jsx';
+
+// 레이아웃
+import DefaultLayout from "./components/layout/DefaultLayout.jsx";
+import AuthLayout from "./components/layout/AuthLayout.jsx";
+
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Signup from "./pages/Signup.jsx";
+import Items from "./pages/Items.jsx";
+import AddItem from "./pages/AddItem.jsx";
+import ItemDetail from "./pages/ItemDetail.jsx";
+import Community from "./pages/Community.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/items",
-    element: <Items />,
-  },
-  {
-    path: "/items/additem",
-    element: <AddItem />,
-  },
-  {
-    path: "/items/:itemId",
-    element: <ItemDetail />,
+    children: [
+      {
+        // default layout group
+        Component: DefaultLayout,
+        children: [
+          { index: true, Component: Home },
+          {
+            path: "community",
+            Component: Community,
+          },
+          {
+            path: "items",
+            children: [
+              {
+                index: true,
+                Component: Items,
+              },
+              {
+                path: "add",
+                Component: AddItem,
+              },
+              {
+                path: ":itemId",
+                Component: ItemDetail,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        // auth layout group
+        Component: AuthLayout,
+        children: [
+          {
+            path: "login",
+            Component: Login,
+          },
+          {
+            path: "signup",
+            Component: Signup,
+          },
+        ],
+      },
+    ],
   },
 ]);
 
-import './assets/styles/reset.css'
-import './index.css'
+import "./assets/styles/reset.css";
+import "./index.css";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
-)
+  </StrictMode>
+);

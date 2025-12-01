@@ -34,6 +34,35 @@
   cursor: pointer;
 }
 
+.header__left--nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.header__left__nav--menu {
+  display: flex;
+  height: 100%;
+}
+
+.header__left__nav--menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 15px;
+}
+
+.header__left__nav--menu-item-link {
+  font-size: var(--text-lg-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
+}
+
+.header__left__nav--menu-item-link--active {
+  color: var(--color-primary-100);
+}
+
 @media (min-width: 768px) {
   .header__logoImage--pc {
     display: block;

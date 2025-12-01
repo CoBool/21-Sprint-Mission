@@ -49,3 +49,15 @@ export async function fetchItem(id) {
   });
   return data;
 }
+
+export async function fetchItemComment(id, limit = 5, cursor) {
+  const { data } = await instance({
+    url: `products/${id}/comments/`,
+    params: {
+      limit,
+      cursor
+    }
+  });
+
+  return data;
+}

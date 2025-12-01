@@ -1,32 +1,30 @@
-import Header from "../components/layout/Header";
-import Footer from "../components/layout/Footer";
-
 import { Link } from "react-router";
 
 import styles from "./Home.module.css";
-import FeatureCard from '../features/home/components/FeatureCard/FeatureCard'
+import FeatureCard from "../features/home/components/FeatureCard/FeatureCard";
 
-import hotImage from '../assets/images/home/hot-item.png';
-import registerImage from '../assets/images/home/register-item.png';
-import searchImage from '../assets/images/home/search-item.png';
+import hotImage from "../assets/images/home/hot-item.png";
+import registerImage from "../assets/images/home/register-item.png";
+import searchImage from "../assets/images/home/search-item.png";
 
 /*
  * Home 페이지
  * 홈페이지 메인 페이지
- * 
+ *
  * Hero 컴포넌트를 어떤식으로 할지 고민중.. 사이즈가 작기에 안하기로 결정.
  * @returns {JSX.Element} Home 페이지
  */
 export default function Home() {
   return (
     <>
-      <Header />
       <main>
         {/* Hero 영역 */}
-        <section className={`${styles['hero']} ${styles["hero-first"]}`}>
-          <div className={`container ${styles['hero__container']}`}>
+        <section className={`${styles["hero"]} ${styles["hero-first"]}`}>
+          <div className={`container ${styles["hero__container"]}`}>
             <div className={styles["hero__text"]}>
-              <h1 className={styles["hero__title"]}>일상의 모든 물건을 거래해보세요</h1>
+              <h1 className={styles["hero__title"]}>
+                일상의 모든 물건을 거래해보세요
+              </h1>
               <Link to="/items" className={styles["hero__link"]}>
                 구경하러 가기
               </Link>
@@ -62,16 +60,17 @@ export default function Home() {
         </div>
 
         {/* Hero 영역 */}
-        <section className={`${styles['hero']} ${styles["hero-second"]}`}>
-          <div className={`container ${styles['hero__container']}`}>
+        <section className={`${styles["hero"]} ${styles["hero-second"]}`}>
+          <div className={`container ${styles["hero__container"]}`}>
             <div className={styles["hero__text"]}>
-              <h2 className={styles["hero__title"]}>믿을 수 있는 판다마켓 중고 거래</h2>
+              <h2 className={styles["hero__title"]}>
+                믿을 수 있는 판다마켓 중고 거래
+              </h2>
             </div>
             <div className={styles["hero__image"]}></div>
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }
