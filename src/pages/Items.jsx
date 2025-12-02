@@ -13,6 +13,7 @@ import { fetchItems } from "../features/items/api/itemsApi";
 
 // 유틸리티
 import { getPagination } from "../utility/pagination";
+import { debounced } from "../utility/delay";
 
 import {
   ProductsList,
@@ -61,8 +62,8 @@ function getInitialBestPageSize() {
 
 export default function Items() {
   // 상품 목록 State
-  const [bestItems, setBestItems] = useState([]);
-  const [items, setItems] = useState([]);
+  const [bestItems, setBestItems] = useState(null);
+  const [items, setItems] = useState(null);
 
   // 전체 상품 관리 State
   const [totalCount, setTotalCount] = useState(0);
@@ -70,9 +71,15 @@ export default function Items() {
   const [pageSize, setPageSize] = useState(getInitialPageSize());
   const [bestPageSize, setBestPageSize] = useState(getInitialBestPageSize());
   const [orderBy, setOrderBy] = useState("recent");
+  const [keyword, setKeyword] = useState("");
+  const debouncedSearch = debounced((keyword) => {
+    setKeyword(keyword);
+    // 현재 페이지 이동안시켜주면 검색한 아이템 갯수랑 일치하지않아서 있음에도 불구하고 상품을 못보는 경우가 있음. 그래서 현재 페이지를 1로 초기화해준다.
+    setCurrentPage(1);
+  }, 1000);
 
   // 스켈레톤 UI 로딩
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(null);
 
   const { hasPrevPage, hasNextPage, visiblePages } = getPagination(
@@ -135,26 +142,18 @@ export default function Items() {
 
   // 의존성 주입으로 현재 페이지, 노출될 아이템, 정렬 기준에 따라 재요청
   useEffect(() => {
-    let timeout;
-    try {
-      fetchItems(currentPage, pageSize, orderBy)
-        .then(({ list, totalCount }) => {
-          setItems(list);
-          setTotalCount(totalCount);
-        })
-        .catch((err) => {
-          setIsError(err); // 에러 처리 추가
-        });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      timeout = setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [currentPage, pageSize, orderBy]);
+    fetchItems(currentPage, pageSize, orderBy, keyword)
+      .then(({ list, totalCount }) => {
+        setItems(list);
+        setTotalCount(totalCount);
+      })
+      .catch((err) => {
+        setIsError(err); // 에러 처리 추가
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [currentPage, pageSize, keyword, orderBy]);
 
   const handlePage = (type, value) => {
     switch (type) {
@@ -170,7 +169,7 @@ export default function Items() {
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <>
         <Skeleton bestPageSize={bestPageSize} pageSize={pageSize} />
@@ -213,6 +212,9 @@ export default function Items() {
                 <input
                   type="text"
                   placeholder="검색할 상품을 입력해주세요."
+                  onChange={(e) => {
+                    debouncedSearch(e.target.value);
+                  }}
                   className={`${styles["items__section__controls__search__input"]}`}
                 />
               </div>
