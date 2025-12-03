@@ -31,7 +31,7 @@ import { instance } from '../../../lib/axios';
  */
 export async function fetchItems(page, pageSize, orderBy, keyword = "") {
   const { data } = await instance({
-    url: "products",
+    url: "/products",
     params: { page, pageSize, orderBy, keyword },
   });
   return data;
@@ -50,6 +50,13 @@ export async function fetchItem(id) {
   return data;
 }
 
+/** 
+ * 상품 상세 코멘트를 서버에서 요청합니다.
+ * 
+ * @param {number} id 상품 ID
+ * @param {number} limit 코멘트 가지고올 갯수
+ * @param {string} cursor 현재 코멘트의 마지막 위치
+*/
 export async function fetchItemComment(id, limit = 5, cursor) {
   const { data } = await instance({
     url: `products/${id}/comments/`,

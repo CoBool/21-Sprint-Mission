@@ -1,0 +1,12 @@
+.add-item__container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 17px;
+  padding-bottom: 35px;
+}
+
+.add-item__section {
+  display: flex;
+  flex-direction: column;
+}

@@ -22,25 +22,25 @@
 */
 export function getPagination(totalItems, currentPage, pageSize = 10, pageBlock = 5) {
   const totalPages = Math.ceil(totalItems / pageSize);
+  let startPage;
 
-  const startPage =
-    Math.floor((currentPage - 1) / pageBlock) * pageBlock + 1;
-  const endPage = Math.min(startPage + pageBlock - 1, totalPages);
+  if ( totalPages <= pageBlock ) {
+    startPage = 1;
+  } else {
+    startPage = Math.max(currentPage - Math.floor(pageBlock / 2), 1);
+    startPage = Math.min(startPage, totalPages - pageBlock + 1);
+  }
 
   const hasPrevPage = currentPage > 1;
   const hasNextPage = currentPage < totalPages;
 
-  // 조금 더 멋있게 할 수 있지만 제일 이해하기 쉬운 코드로!
-  const visiblePages = []
-
-  for(let i = startPage; i <= endPage; i++) {
-    visiblePages.push(i);
-  }
+  const visiblePages = Array.from(
+    { length: Math.min(pageBlock, totalPages - startPage + 1) },
+    (_, i) => startPage + i
+  );
 
   return {
     totalPages,
-    startPage,
-    endPage,
     hasPrevPage,
     hasNextPage,
     visiblePages

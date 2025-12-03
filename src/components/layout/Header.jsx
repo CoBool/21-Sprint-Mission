@@ -12,7 +12,12 @@ import styles from "./Header.module.css";
 
 import { Link, NavLink } from "react-router";
 
+import { useAuth } from "../../context/AuthContext";
+
 export default function Header() {
+
+  const { token, logout } = useAuth();
+
   return (
     <header className={styles["header"]}>
       <div className={`container ${styles["header__container"]}`}>
@@ -50,9 +55,9 @@ export default function Header() {
           </ul>
         </div>
         <nav className={`${styles["header__right--nav"]}`}>
-          <Link to="/login" className={styles["header__loginBtn"]}>
+          { !token ? (<Link to="/login" className={styles["header__loginBtn"]}>
             로그인
-          </Link>
+          </Link>) : (<button className={styles["header__loginBtn"]} onClick={logout}>로그아웃</button>)}
         </nav>
       </div>
     </header>

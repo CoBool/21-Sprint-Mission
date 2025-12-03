@@ -4,6 +4,8 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
+import AuthProvider from "./provider/AuthProvider.jsx";
+
 // 레이아웃
 import DefaultLayout from "./components/layout/DefaultLayout.jsx";
 import AuthLayout from "./components/layout/AuthLayout.jsx";
@@ -71,6 +73,8 @@ import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

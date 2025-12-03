@@ -9,12 +9,34 @@ import kakaoIcon from "../assets/images/icons/kakao_oauth.png";
 import googleIcon from "../assets/images/icons/google_oauth.png";
 
 import styles from "./Auth.module.css";
+import { useFormStatus } from "react-dom";
 import { Link } from "react-router";
 
+// import { authLogin } from "../features/auth/api/authApi.js";
+
+// import { useAuth } from "../context/AuthContext.js";
+
+function Submit({className}) {
+  const { pending } = useFormStatus();
+  return (
+    <button type="submit" className={className} disabled={pending}>
+      {pending ? "대기중..." : "로그인"}
+    </button>
+  );
+}
+
+function submitForm(formData) {
+  console.log(formData.get('email'));
+  return;
+}
+
 export default function Login() {
+  // let navigate = useNavigate();
+  // const { login } = useAuth();
+
   return (
     <>
-      <form className={styles["form-block"]}>
+      <form className={styles["form-block"]} action={submitForm}>
         {/* 이메일 */}
         <div className={styles["form-block__group"]}>
           <label className={styles["form-block__label"]} htmlFor="email">
@@ -56,9 +78,10 @@ export default function Login() {
         </div>
 
         {/* 제출 */}
-        <button className={styles["form-block__button"]} type="submit">
+        <Submit className={styles["form-block__button"]}/>
+        {/* <button className={styles["form-block__button"]} type="submit">
           로그인
-        </button>
+        </button> */}
       </form>
 
       <div className={styles["oauth-block"]}>
