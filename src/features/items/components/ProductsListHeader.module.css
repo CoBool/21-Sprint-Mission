@@ -1,0 +1,85 @@
+.items__section__header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "title create"
+    "search sort";
+  row-gap: 12px;
+  column-gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* 각 요소 매핑 */
+.items__section__title {
+  grid-area: title;
+}
+
+.items__section__controls__search__container {
+  position: relative;
+  grid-area: search;
+  width: 100%;
+  min-width: 0;
+}
+
+.items__section__controls__search__container::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background-image: url('../../../assets/images/icons/ic_search.png');
+  background-size: contain;
+}
+
+.items__section__controls__button {
+  grid-area: create;
+}
+
+.items__section__sort__container {
+  grid-area: sort;
+  width: 42px; /* 고정 크기 */
+  justify-self: end;
+}
+
+.items__section__controls__search__input {
+  width: 100%;
+  padding: 12px 20px;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--text-lg-size);
+  line-height: var(--text-lg-line);
+  color: var(--color-gray-800);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
+  background-color: var(--color-gray-100);
+  padding-left: 45px;
+}
+
+.items__section__controls__button {
+  width: 133px;
+  padding: 12px 0;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--text-lg-size);
+  line-height: var(--text-lg-line);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  background-color: var(--color-primary-100);
+  cursor: pointer;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .items__section__header {
+    grid-template-columns: auto 1fr minmax(242px, 1fr) auto;
+    grid-template-areas: "title . search create sort";
+    column-gap: 16px;
+    align-items: center;
+  }
+
+  .items__section__sort__container {
+    width: auto;
+  }
+}

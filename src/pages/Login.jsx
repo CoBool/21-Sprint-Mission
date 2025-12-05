@@ -27,7 +27,7 @@ function Submit({className}) {
 
 function submitForm(formData) {
   console.log(formData.get('email'));
-  return;
+  console.log(formData.get('password'));
 }
 
 export default function Login() {
