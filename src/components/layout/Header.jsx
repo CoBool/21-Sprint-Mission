@@ -19,45 +19,45 @@ export default function Header() {
   const { token, logout } = useAuth();
 
   return (
-    <header className={styles["header"]}>
-      <div className={`container ${styles["header__container"]}`}>
-        <div className={`${styles["header__left--nav"]}`}>
-          <div className={styles["header__logo"]}>
+    <header className={styles.header}>
+      <div className={`container ${styles.container}`}>
+        <div className={styles.leftNav}>
+          <div>
             <Link to="/">
               <img
                 src={PandaMarketLogo_PC}
                 alt="판다마켓 로고"
-                className={`${styles["header__logoImage"]} ${styles["header__logoImage--pc"]}`}
+                className={`${styles.logoImagePc}`}
               />
               <img
                 src={PandaMarketLogo_Mobile}
                 alt="판다마켓 로고"
-                className={`${styles["header__logoImage"]} ${styles["header__logoImage--mobile"]}`}
+                className={`${styles.logoImageMobile}`}
               />
             </Link>
           </div>
-          <ul className={`${styles["header__left__nav--menu"]}`}>
-            <li className={`${styles["header__left__nav--menu-item"]}`}>
+          <ul className={styles.menu}>
+            <li className={styles.menuItem}>
               <NavLink
                 to="/community"
                 className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? `${styles["header__left__nav--menu-item-link"]} ${styles["header__left__nav--menu-item-link--active"]}` : ""
+                  isPending ? "pending" : isActive ? `${styles.menuLink} ${styles.menuLinkActive}` : styles.menuLink
                 }
               >
                 자유게시판
               </NavLink>
             </li>
-            <li className={`${styles["header__left__nav--menu-item"]}`}>
+            <li className={styles.menuItem}>
               <NavLink to="/items" className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? `${styles["header__left__nav--menu-item-link"]} ${styles["header__left__nav--menu-item-link--active"]}` : ""
+                isPending ? "pending" : isActive ? `${styles.menuLink} ${styles.menuLinkActive}` : styles.menuLink
               }>중고마켓</NavLink>
             </li>
           </ul>
         </div>
-        <nav className={`${styles["header__right--nav"]}`}>
-          { !token ? (<Link to="/login" className={styles["header__loginBtn"]}>
+        <nav>
+          { !token ? (<Link to="/login" className={styles.loginButton}>
             로그인
-          </Link>) : (<button className={styles["header__loginBtn"]} onClick={logout}>로그아웃</button>)}
+          </Link>) : (<button className={styles.loginButton} onClick={logout}>로그아웃</button>)}
         </nav>
       </div>
     </header>

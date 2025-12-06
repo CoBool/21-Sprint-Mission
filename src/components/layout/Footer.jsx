@@ -8,73 +8,73 @@ import { Link } from 'react-router';
 
 export default function Footer() {
   return (
-    <footer className={styles["footer"]}>
-      <div className={`container ${styles["footer__container"]}`}>
-        <div className={styles["footer__copyright"]}>
-          <p className={styles["footer__copyright-text"]}>©BooleanMarket - 2025</p>
+    <footer className={styles.footer}>
+      <div className={`container ${styles.container}`}>
+        <div className={styles.copyright}>
+          <p>©BooleanMarket - 2025</p>
         </div>
 
-        <ul className={styles["footer__nav"]}>
-          <li className={styles["footer__nav-item"]}>
-            <Link to="/privacy" className={styles["footer__nav-link"]}>
+        <ul className={styles.nav}>
+          <li>
+            <Link to="/privacy" className={styles.navLink}>
               Privacy Policy
             </Link>
           </li>
-          <li className={styles["footer__nav-item"]}>
-            <Link to="/faq" className={styles["footer__nav-link"]}>
+          <li>
+            <Link to="/faq" className={styles.navLink}>
               FAQ
             </Link>
           </li>
         </ul>
 
-        <ul className={styles["footer__social"]}>
-          <li className={styles["footer__social-item"]}>
+        <ul className={styles.social}>
+          <li>
             <a
               href="https://www.facebook.com/"
               target="_blank"
-              className={styles["footer__social-link"]}
+              className={styles.socialLink}
             >
               <img
-                className={styles["footer__social-icon"]}
+                className={styles.socialIcon}
                 src={FacebookIcon}
                 alt="페이스북"
               />
             </a>
           </li>
-          <li className={styles["footer__social-item"]}>
+          <li>
             <a
               href="https://www.twitter.com/"
               target="_blank"
-              className={styles["footer__social-link"]}
+              className={styles.socialLink}
             >
               <img
-                className={styles["footer__social-icon"]}
+                className={styles.socialIcon}
                 src={TwitterIcon}
                 alt="트위터"
               />
             </a>
           </li>
-          <li className={styles["footer__social-item"]}>
+          <li>
             <a
               href="https://www.youtube.com/"
               target="_blank"
-              className={styles["footer__social-link"]}
+              className={styles.socialLink}
             >
               <img
-                className={styles["footer__social-icon"]}
+                className={styles.socialIcon}
                 src={YoutubeIcon}
                 alt="유튜브"
               />
             </a>
           </li>
-          <li className={styles["footer__social-item"]}>
+          <li>
             <a
               href="https://www.instagram.com/"
               target="_blank"
-              className={styles["footer__social-link"]}
+              className={styles.socialLink}
             >
               <img
-                className={styles["footer__social-icon"]}
+                className={styles.socialIcon}
                 src={InstagramIcon}
                 alt="인스타그램"
               />

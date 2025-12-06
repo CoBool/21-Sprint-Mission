@@ -9,15 +9,15 @@ import PandaMarketLogo_PC from '../../assets/images/logo.svg'
 export default function DefaultLayout() {
   return (
     <>
-      <div className={styles["form"]}>
+      <div className={styles.form}>
         <div className={`container`}>
-          <header className={styles["form-header"]}>
-            <div className={styles["form-header__logo"]}>
-              <Link to="/" className={styles["form-header__link"]}>
+          <header className={styles.header}>
+            <div>
+              <Link to="/" className={styles.headerLink}>
                 <img
                   src={PandaMarketLogo_PC}
                   alt="판다마켓 로고"
-                  className={styles["form-header__logo-image"]}
+                  className={styles.logoImage}
                 />
               </Link>
             </div>

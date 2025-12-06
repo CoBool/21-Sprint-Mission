@@ -10,13 +10,13 @@ import AuthProvider from "./provider/AuthProvider.jsx";
 import DefaultLayout from "./components/layout/DefaultLayout.jsx";
 import AuthLayout from "./components/layout/AuthLayout.jsx";
 
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import Signup from "./pages/Signup.jsx";
-import Items from "./pages/Items.jsx";
-import AddItem from "./pages/AddItem.jsx";
-import ItemDetail from "./pages/ItemDetail.jsx";
-import Community from "./pages/Community.jsx";
+import Home from "./pages/home";
+import Login from "./pages/auth/Login";
+import Signup from "./pages/auth/Signup";
+import Items from "./pages/items";
+import AddItem from "./pages/items/AddItem";
+import ItemDetail from "./pages/items/ItemDetail";
+import Community from "./pages/community";
 
 const router = createBrowserRouter([
   {

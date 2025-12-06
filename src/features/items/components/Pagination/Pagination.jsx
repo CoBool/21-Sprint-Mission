@@ -1,5 +1,5 @@
-import styles from "./pagination.module.css";
-import ArrowIcon from "../../../assets/images/icons/arrow.png";
+import styles from "./Pagination.module.css";
+import ArrowIcon from "../../../../assets/images/icons/arrow.png";
 
 export default function Pagination({
   currentPage,
@@ -9,11 +9,11 @@ export default function Pagination({
   onPageChange,
 }) {
   return (
-    <div className={`${styles["pagination__container"]}`}>
-      <ul className={`${styles["pagination__list"]}`}>
+    <div className={styles.container}>
+      <ul className={styles.list}>
         <li>
           <button
-            className={`${styles["pagination__button"]} ${styles["pagination__button--prev"]}`}
+            className={`${styles.button} ${styles.buttonPrev}`}
             onClick={() => onPageChange("prev")}
             aria-label="이전페이지"
             disabled={!hasPrevPage}
@@ -24,9 +24,9 @@ export default function Pagination({
         {visiblePages.map((page) => (
           <li key={page}>
             <button
-              className={`${styles["pagination__button"]} ${
+              className={`${styles.button} ${
                 page === currentPage
-                  ? styles["pagination__button--current"]
+                  ? styles.buttonCurrent
                   : ""
               }`}
               onClick={() => onPageChange("number", page)}
@@ -37,7 +37,7 @@ export default function Pagination({
         ))}
         <li>
           <button
-            className={`${styles["pagination__button"]} ${styles["pagination__button--next"]}`}
+            className={`${styles.button} ${styles.buttonNext}`}
             onClick={() => onPageChange("next")}
             aria-label="다음페이지"
             disabled={!hasNextPage}

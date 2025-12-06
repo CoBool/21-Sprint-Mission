@@ -3,27 +3,27 @@
   폼 블록 스타일
 ==============================
 */
-.form-block {
+.form {
   display: flex;
   flex-direction: column;
   gap: 24px;
   margin-bottom: 24px;
 }
 
-.form-block__group {
+.formGroup {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.form-block__label {
+.label {
   font-weight: bold;
   font-size: clamp(14px, 0.938vw, 18px);
   color: var(--color-gray-800);
 }
 
-.form-block__input {
+.input {
   width: 100%;
   padding: 16px 24px;
   border-radius: 12px;
@@ -33,7 +33,7 @@
   border: 0;
 }
 
-.form-block__button {
+.button {
   display: flex;
   width: 100%;
   align-items: center;
@@ -53,7 +53,7 @@
 ==============================
 */
 
-.oauth-block {
+.oauth {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,13 +63,13 @@
   border-radius: 10px;
 }
 
-.oauth-block__text {
+.oauthText {
   font-weight: 500;
   font-size: 16px;
   color: var(--color-gray-800);
 }
 
-.oauth-block__group {
+.oauthGroup {
   display: flex;
   gap: 10px;
 }
@@ -80,7 +80,7 @@
 ==============================
 */
 
-.form__footer {
+.footer {
   display: flex;
   justify-content: center;
   font-weight: 500;
@@ -89,7 +89,7 @@
   gap: 10px;
 }
 
-.form__footer-link {
+.footerLink {
   color: var(--color-primary-100);
   text-decoration: none;
 }

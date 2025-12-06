@@ -5,16 +5,16 @@
  * @returns {JSX.Element} Login 페이지
  */
 
-import kakaoIcon from "../assets/images/icons/kakao_oauth.png";
-import googleIcon from "../assets/images/icons/google_oauth.png";
+import kakaoIcon from "../../../assets/images/icons/kakao_oauth.png";
+import googleIcon from "../../../assets/images/icons/google_oauth.png";
 
-import styles from "./Auth.module.css";
+import styles from "../Auth.module.css";
 import { useFormStatus } from "react-dom";
 import { Link } from "react-router";
 
-// import { authLogin } from "../features/auth/api/authApi.js";
+// import { authLogin } from "../../../features/auth/api/authApi.js";
 
-// import { useAuth } from "../context/AuthContext.js";
+// import { useAuth } from "../../../context/AuthContext.js";
 
 function Submit({className}) {
   const { pending } = useFormStatus();
@@ -36,14 +36,14 @@ export default function Login() {
 
   return (
     <>
-      <form className={styles["form-block"]} action={submitForm}>
+      <form className={styles.form} action={submitForm}>
         {/* 이메일 */}
-        <div className={styles["form-block__group"]}>
-          <label className={styles["form-block__label"]} htmlFor="email">
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="email">
             이메일
           </label>
           <input
-            className={styles["form-block__input"]}
+            className={styles.input}
             type="email"
             id="email"
             name="email"
@@ -52,18 +52,17 @@ export default function Login() {
           />
           <span
             id="email-error"
-            className={styles["form-block__error-message"]}
             role="alert"
           ></span>
         </div>
 
         {/* 비밀번호 */}
-        <div className={styles["form-block__group"]}>
-          <label className={styles["form-block__label"]} htmlFor="password">
+        <div className={styles.formGroup}>
+          <label className={styles.label} htmlFor="password">
             비밀번호
           </label>
           <input
-            className={styles["form-block__input"]}
+            className={styles.input}
             type="password"
             id="password"
             name="password"
@@ -72,40 +71,32 @@ export default function Login() {
           />
           <span
             id="password-error"
-            className={styles["form-block__error-message"]}
             role="alert"
           ></span>
         </div>
 
         {/* 제출 */}
-        <Submit className={styles["form-block__button"]}/>
-        {/* <button className={styles["form-block__button"]} type="submit">
-          로그인
-        </button> */}
+        <Submit className={styles.button}/>
       </form>
 
-      <div className={styles["oauth-block"]}>
-        <span className={styles["oauth-block__text"]}>간편 로그인하기</span>
+      <div className={styles.oauth}>
+        <span className={styles.oauthText}>간편 로그인하기</span>
 
-        <div className={styles["oauth-block__group"]}>
+        <div className={styles.oauthGroup}>
           <a
-            className={styles["oauth-block__button"]}
             href="https://www.google.com/"
             target="_blank"
           >
             <img
-              className={styles["oauth-block__icon"]}
               src={googleIcon}
               alt="Google로 로그인"
             />
           </a>
           <a
-            className={styles["oauth-block__button"]}
             href="https://www.kakaocorp.com/page/"
             target="_blank"
           >
             <img
-              className={styles["oauth-block__icon"]}
               src={kakaoIcon}
               alt="카카오로 로그인"
             />
@@ -113,9 +104,9 @@ export default function Login() {
         </div>
       </div>
 
-      <div className={styles["form__footer"]}>
+      <div className={styles.footer}>
         판다마켓이 처음이신가요?
-        <Link to="/signup" className={styles["form__footer-link"]}>
+        <Link to="/signup" className={styles.footerLink}>
           회원가입
         </Link>
       </div>

@@ -1,4 +1,4 @@
-.items__section__header {
+.header {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-areas:
@@ -10,19 +10,18 @@
   margin-bottom: 16px;
 }
 
-/* 각 요소 매핑 */
-.items__section__title {
+.title {
   grid-area: title;
 }
 
-.items__section__controls__search__container {
+.searchContainer {
   position: relative;
   grid-area: search;
   width: 100%;
   min-width: 0;
 }
 
-.items__section__controls__search__container::before {
+.searchContainer::before {
   content: '';
   position: absolute;
   left: 15px;
@@ -30,21 +29,11 @@
   transform: translateY(-50%);
   width: 24px;
   height: 24px;
-  background-image: url('../../../assets/images/icons/ic_search.png');
+  background-image: url('../../../../assets/images/icons/ic_search.png');
   background-size: contain;
 }
 
-.items__section__controls__button {
-  grid-area: create;
-}
-
-.items__section__sort__container {
-  grid-area: sort;
-  width: 42px; /* 고정 크기 */
-  justify-self: end;
-}
-
-.items__section__controls__search__input {
+.searchInput {
   width: 100%;
   padding: 12px 20px;
   font-weight: var(--font-weight-regular);
@@ -57,7 +46,8 @@
   padding-left: 45px;
 }
 
-.items__section__controls__button {
+.createButton {
+  grid-area: create;
   width: 133px;
   padding: 12px 0;
   font-weight: var(--font-weight-medium);
@@ -71,15 +61,21 @@
   text-align: center;
 }
 
+.sortContainer {
+  grid-area: sort;
+  width: 42px;
+  justify-self: end;
+}
+
 @media (min-width: 768px) {
-  .items__section__header {
+  .header {
     grid-template-columns: auto 1fr minmax(242px, 1fr) auto;
     grid-template-areas: "title . search create sort";
     column-gap: 16px;
     align-items: center;
   }
 
-  .items__section__sort__container {
+  .sortContainer {
     width: auto;
   }
 }

@@ -1,4 +1,4 @@
-import SortIcon from "../../../assets/images/icons/ic_sort.svg"
+import SortIcon from "../../../../assets/images/icons/ic_sort.svg"
 
 import styles from "./ItemsSort.module.css";
 import { useState } from "react";
@@ -18,25 +18,25 @@ export default function ItemsSort({ orderBy, setOrderBy }) {
   const label = orderBy === "recent" ? "최신순" : "좋아요순";
 
   return (
-    <div className={`${styles["items__sort"]}`}>
+    <div className={styles.container}>
       <div
-        className={`${styles["items__sort__trigger"]}`}
+        className={styles.trigger}
         onClick={handleToggle}
       >
-        <span className={`${styles["items__sort__trigger__text"]} ${isOpen ? styles["items__sort__trigger__text--active"] : ""}`}>
+        <span className={`${styles.triggerText} ${isOpen ? styles.triggerTextActive : ""}`}>
           {label}
         </span>
-        <span className={`${styles["items__sort__trigger__icon"]}`}>
+        <span className={styles.triggerIcon}>
           <img src={SortIcon} alt="정렬" />
         </span>
       </div>
       {isOpen && (
-        <ul className={`${styles["items__sort__list"]}`}>
+        <ul className={styles.list}>
           <li>
             <button
-              className={`${styles["items__sort__button"]} ${
+              className={`${styles.button} ${
                 orderBy === "recent"
-                  ? styles["items__sort__button--active"]
+                  ? styles.buttonActive
                   : ""
               }`}
               onClick={() => {
@@ -48,9 +48,9 @@ export default function ItemsSort({ orderBy, setOrderBy }) {
           </li>
           <li>
             <button
-              className={`${styles["items__sort__button"]} ${
+              className={`${styles.button} ${
                 orderBy === "favorite"
-                  ? styles["items__sort__button--active"]
+                  ? styles.buttonActive
                   : ""
               }`}
               onClick={() => {

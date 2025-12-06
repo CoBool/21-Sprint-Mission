@@ -1,11 +1,11 @@
 import { Link } from "react-router";
 
 import styles from "./Home.module.css";
-import FeatureCard from "../features/home/components/FeatureCard/FeatureCard";
+import FeatureCard from "../../features/home/components/FeatureCard/FeatureCard";
 
-import hotImage from "../assets/images/home/hot-item.png";
-import registerImage from "../assets/images/home/register-item.png";
-import searchImage from "../assets/images/home/search-item.png";
+import hotImage from "../../assets/images/home/hot-item.png";
+import registerImage from "../../assets/images/home/register-item.png";
+import searchImage from "../../assets/images/home/search-item.png";
 
 /*
  * Home 페이지
@@ -19,17 +19,17 @@ export default function Home() {
     <>
       <main>
         {/* Hero 영역 */}
-        <section className={`${styles["hero"]} ${styles["hero-first"]}`}>
-          <div className={`container ${styles["hero__container"]}`}>
-            <div className={styles["hero__text"]}>
-              <h1 className={styles["hero__title"]}>
+        <section className={`${styles.hero} ${styles.heroFirst}`}>
+          <div className={`container ${styles.container}`}>
+            <div className={styles.text}>
+              <h1 className={styles.title}>
                 일상의 모든 물건을 거래해보세요
               </h1>
-              <Link to="/items" className={styles["hero__link"]}>
+              <Link to="/items" className={styles.link}>
                 구경하러 가기
               </Link>
             </div>
-            <div className={styles["hero__image"]}></div>
+            <div className={styles.image}></div>
           </div>
         </section>
 
@@ -60,14 +60,14 @@ export default function Home() {
         </div>
 
         {/* Hero 영역 */}
-        <section className={`${styles["hero"]} ${styles["hero-second"]}`}>
-          <div className={`container ${styles["hero__container"]}`}>
-            <div className={styles["hero__text"]}>
-              <h2 className={styles["hero__title"]}>
+        <section className={`${styles.hero} ${styles.heroSecond}`}>
+          <div className={`container ${styles.container}`}>
+            <div className={styles.text}>
+              <h2 className={styles.title}>
                 믿을 수 있는 판다마켓 중고 거래
               </h2>
             </div>
-            <div className={styles["hero__image"]}></div>
+            <div className={styles.image}></div>
           </div>
         </section>
       </main>

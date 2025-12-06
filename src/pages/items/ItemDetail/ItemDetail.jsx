@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 
-import { fetchItem, fetchItemComment } from '../features/items/api/itemsApi'
+import { fetchItem, fetchItemComment } from '../../../features/items/api/itemsApi'
 import { useEffect } from "react";
 import { useState } from "react";
 

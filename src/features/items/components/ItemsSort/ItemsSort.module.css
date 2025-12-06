@@ -1,19 +1,18 @@
-.items__sort {
+.container {
   position: relative;
 }
 
-.items__sort__trigger {
+.trigger {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.items__sort__trigger__text {
+.triggerText {
   position: relative;
   display: none;
   text-wrap: nowrap;
   white-space: nowrap;
-
   width: 130px;
   font-weight: var(--font-weight-regular);
   font-size: var(--text-lg-size);
@@ -25,14 +24,14 @@
   border-radius: 12px;
 }
 
-.items__sort__trigger__text::before {
+.triggerText::before {
   content: "";
   position: absolute;
   right: 20px;
   top: 50%;
   width: 24px;
   height: 24px;
-  background-image: url("../../../assets/images/icons/ic_arrow_down.svg");
+  background-image: url("../../../../assets/images/icons/ic_arrow_down.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -40,16 +39,16 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.items__sort__trigger__text--active::before {
+.triggerTextActive::before {
   transform: translateY(-50%) scaleY(-1);
 }
 
-.items__sort__trigger__icon {
+.triggerIcon {
   display: block;
   padding: 12px 0;
 }
 
-.items__sort__list {
+.list {
   position: absolute;
   right: 0;
   top: calc(100% + 8px);
@@ -62,7 +61,7 @@
   overflow: hidden;
 }
 
-.items__sort__button {
+.button {
   width: 100%;
   text-align: center;
   padding: 8px 0;
@@ -76,20 +75,20 @@
   border-top: 1px solid var(--color-gray-200);
 }
 
-.items__sort__button:first-child {
+.button:first-child {
   border-top: none;
 }
 
-.items__sort__button--active {
+.buttonActive {
   background-color: var(--color-gray-100);
 }
 
 @media (min-width: 768px) {
-  .items__sort__trigger__text {
+  .triggerText {
     display: block;
   }
 
-  .items__sort__trigger__icon {
+  .triggerIcon {
     display: none;
   }
 }

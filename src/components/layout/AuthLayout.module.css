@@ -15,26 +15,26 @@
   폼 헤더 스타일
 ==============================
 */
-.form-header {
+.header {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
 }
 
-.form-header__link {
+.headerLink {
   display: flex;
   align-items: center;
   padding: 0 10%;
 }
 
-.form-header__logo-image {
+.logoImage {
   max-width: 100%;
   height: auto;
 }
 
 @media (min-width: 768px) {
-  .form-header__link {
+  .headerLink {
     padding: 0;
   }
 }

@@ -1,0 +1,42 @@
+/*
+==============================
+  Items 스타일
+==============================
+*/
+
+.lists {
+  display: grid;
+}
+
+.bestSection .lists {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.allSection .lists {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 8px;
+}
+
+@media (min-width: 768px) {
+  .bestSection .lists {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .allSection .lists {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 16px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bestSection .lists {
+    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .allSection .lists {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px 24px;
+  }
+}

@@ -5,7 +5,7 @@
   color: var(--color-gray-200);
 }
 
-.footer__container {
+.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,30 +13,30 @@
   gap: 60px;
 }
 
-.footer__copyright {
+.copyright {
   flex: 1 0 100%;
   order: 3;
 }
 
-.footer__nav {
+.nav {
   display: flex;
   gap: 30px;
 }
 
-.footer__nav-link {
+.navLink {
   color: var(--color-gray-200);
 }
 
-.footer__social {
+.social {
   display: flex;
   gap: 10px;
 }
 
-.footer__social-link {
+.socialLink {
   display: block;
 }
 
-.footer__social-icon {
+.socialIcon {
   display: block;
 }
 
@@ -46,7 +46,7 @@
 ==============================
 */
 @media (min-width: 768px) {
-  .footer__copyright {
+  .copyright {
     flex: unset;
     order: unset;
   }

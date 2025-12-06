@@ -1,11 +1,11 @@
-.pagination__container {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 40px;
 }
 
-.pagination__list {
+.list {
   position: relative;
   display: flex;
   gap: 4px;
@@ -13,7 +13,7 @@
   padding: 0 44px;
 }
 
-.pagination__button {
+.button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,28 +29,28 @@
   cursor: pointer;
 }
 
-.pagination__button--prev,
-.pagination__button--next {
+.buttonPrev,
+.buttonNext {
   position: absolute;
   top: 0;
 }
 
-.pagination__button--prev {
+.buttonPrev {
   left: 0;
 }
 
-.pagination__button--next {
+.buttonNext {
   right: 0;
   transform: scaleX(-1);
 }
 
-.pagination__button--current {
+.buttonCurrent {
   background-color: var(--color-primary-500);
   color: #fff;
   border: 1px solid var(--color-primary-500);
   pointer-events: none;
 }
 
-.pagination__button[disabled] {
+.button[disabled] {
   pointer-events: none;
 }

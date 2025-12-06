@@ -36,8 +36,8 @@ export const useResponsiveValue = (valueMap) => {
   useEffect(() => {
     const queryMaps = [
       { query: `(min-width: ${BREAK_POINTS.DESKTOP}px)`, key: 'desktop'},
-      { query: `(min-width: ${BREAK_POINTS.TABLET}px)`, key: 'tablet'},
-      { query: `(min-width: ${BREAK_POINTS.MOBILE}px)`, key: 'mobile'}
+      { query: `(min-width: ${parseInt(BREAK_POINTS.MOBILE) + 1}px) and (max-width: ${BREAK_POINTS.TABLET}px)`, key: 'tablet'},
+      { query: `(max-width: ${BREAK_POINTS.MOBILE}px)`, key: 'mobile'}
     ];
 
     const handlers = queryMaps.map(( { query, key } ) => {

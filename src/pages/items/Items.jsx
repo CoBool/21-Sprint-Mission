@@ -1,13 +1,14 @@
 import styles from "./Items.module.css";
+import sharedStyles from "../../assets/styles/layout.module.css";
 
-import { useItems } from "../features/items/hooks/useItems";
+import { useItems } from "../../features/items/hooks/useItems";
 
 import {
   ProductsListHeader,
   ProductsList,
   Pagination,
   Skeleton,
-} from "../features/items/components";
+} from "../../features/items/components";
 
 export default function Items() {
   const { ItemsData, pagination, controls, handlers } = useItems();
@@ -27,14 +28,14 @@ export default function Items() {
 
   return (
     <main>
-      <div className={`container ${styles["items__container"]}`}>
+      <div className={`container ${sharedStyles.pageContainer}`}>
         {/* 베스트 상품 Section */}
         <section
-          className={`${styles["items__section"]} ${styles["items__section--best"]}`}
+          className={`${sharedStyles.section} ${styles.bestSection}`}
         >
-          <h1 className={`${styles["items__section__title"]}`}>베스트 상품</h1>
+          <h1 className={sharedStyles.sectionTitle}>베스트 상품</h1>
           {/* 베스트 상품 리스트 */}
-          <div className={`${styles["items__section__lists"]}`}>
+          <div className={styles.lists}>
             {bestItems && (
               <ProductsList lists={bestItems.slice(0, bestPageSize)} />
             )}
@@ -43,12 +44,12 @@ export default function Items() {
 
         {/* 전체 상품 Section */}
         <section
-          className={`${styles["items__section"]} ${styles["items__section--all"]}`}
+          className={`${sharedStyles.section} ${styles.allSection}`}
         >
           {/* 전체 상품 Header 컴포넌트 */}
           <ProductsListHeader orderBy={orderBy} setOrderBy={setOrderBy} debouncedSearch={debouncedSearch} />
           {/* 전체 상품 리스트 */}
-          <div className={`${styles["items__section__lists"]}`}>
+          <div className={styles.lists}>
             {items && (
               <ProductsList lists={items} />
             )}
