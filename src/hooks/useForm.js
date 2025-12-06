@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const useForm = ({
-  initialValues, validate, onSubmit,
+  initialValues, validate, onAction,
 }) => {
   // --- 1. 상태 (State) 정의
   const [values, setValues] = useState(initialValues);
@@ -37,7 +37,7 @@ export const useForm = ({
     setFieldValue(name, newValue);
   }
 
-  const handleSubmit = () => {
+  const handleAction = () => {
     const allTouched = Object.keys(values).reduce((acc, key) => {
       return { ...acc, [key]: true };
     }, {});
@@ -47,7 +47,7 @@ export const useForm = ({
     const nextErrors = validate(values);
     setErrors(nextErrors);
 
-    onSubmit(values);
+    onAction(values);
   }
 
   const setFieldValue = (name, value) => {
@@ -56,16 +56,12 @@ export const useForm = ({
 
     const nextErrors = validate(nextValues);
     setErrors(nextErrors);
-
-    if ( !touched[name] ) {
-      setTouched((prev) => ({ ...prev, [name]: true }));
-    }
   }
   
 
   return {
     values,
-    handlers: { handleBlur, handleChange, handleSubmit, setFieldValue },
+    handlers: { handleBlur, handleChange, handleAction, setFieldValue },
     controls: { touched, errors },
   }
 }
