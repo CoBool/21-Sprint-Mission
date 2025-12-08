@@ -2,14 +2,18 @@ import styles from "./AddItem.module.css";
 import sharedStyles from "../../../assets/styles/layout.module.css";
 import { useForm } from "../../../hooks/useForm";
 import { useFilePreview } from "../../../hooks/useFilePreview";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const initialValues = {
-  image: [],
+  images: [],
   name: "",
   description: "",
   price: "",
-  tags: [],
+  tags: ['스프린트', '21기', '화이팅'],
 };
+
+import { imageUpload, createItem } from "../../../features/items/api/itemsApi";
 
 const validate = (values) => {
   const errors = {};
@@ -17,7 +21,7 @@ const validate = (values) => {
   if (!values.description.trim()) errors.description = '상품 소개를 입력해주세요.';
   if (!values.price) errors.price = '판매가격을 입력해주세요.';
   else if (values.price <= 0) errors.price = '판매가격은 0원 이상이어야 합니다.';
-  if (!values.tags) errors.tags = '태그를 입력해주세요.';
+  // if (!values.tags) errors.tags = '태그를 입력해주세요.';
   
   // 이미지 필수 체크가 필요하다면 추가
   // if (values.image.length === 0) errors.image = '이미지를 최소 1장 등록해주세요.';
@@ -25,16 +29,37 @@ const validate = (values) => {
   return errors;
 };
 
-export default function AddItem() {
 
+export default function AddItem() {
+  const navigate = useNavigate();
   const { values, handlers, controls } = useForm({
     initialValues,
     validate,
-    onAction: (values) => {
-      console.log("제출 성공:", values);
-      return false;
+    onAction: async (values) => {
+      try {
+        const newValues = {
+          ...values,
+          images: uploadedImages,
+        }
+        const response = await createItem(newValues);
+
+        const confirmation = window.confirm("상품 등록이 완료되었습니다. 등록한 상품을 확인하시겠습니까?");
+
+        if ( confirmation ) {
+          const { id } = response;
+          navigate(`/items/${id}`);
+        } else {
+          navigate("/items");
+        }
+      } catch (error) {
+        console.error("상품 등록 실패:", error);
+        throw error;
+      }
     },
   });
+
+  // 일단.. 임시로 업로드된 이미지 보관소!!!
+  const [uploadedImages, setUploadedImages] = useState([]);
 
   const { handleBlur, handleChange, handleAction, setFieldValue } = handlers;
   const { touched, errors } = controls;
@@ -43,12 +68,33 @@ export default function AddItem() {
   const currentErrors = validate(values);
   const isSubmitable = Object.keys(currentErrors).length === 0;
 
-  const preview = useFilePreview(values?.image);
+  const preview = useFilePreview(values?.images);
 
   const handleRemoveFile = (indexToRemove) => {
-    const nextFiles = values.image.filter((_, index) => index !== indexToRemove);
-    setFieldValue("image", nextFiles);
-  };  
+    const nextFiles = values.images.filter((_, index) => index !== indexToRemove);
+    setFieldValue("images", nextFiles);
+    // 의미는 없지만 일단 삭제해줍니다...
+    setUploadedImages((prev) => prev.filter((_, index) => index !== indexToRemove));
+  };
+
+  const handleImageUpload = async (e) => {
+    const { files } = e.target;
+    const newFiles = Array.from(files || []);
+    
+    newFiles.forEach(async (file) => {
+      try {
+        if ( file.type.startsWith('image/') ) {
+          const response = await imageUpload(file);
+          setUploadedImages((prev) => [...prev, response.url]);
+        }
+      } catch (error) {
+        console.error("이미지 업로드 실패:", error);
+        throw error;
+      }
+    });
+
+    setFieldValue("images", [...values.images, ...newFiles]);
+  }
 
   return (
     <main>
@@ -70,19 +116,19 @@ export default function AddItem() {
 
             {/* 1. 이미지 업로드 그룹 */}
             <div className={styles.formGroup}>
-              <label htmlFor="image" className={styles.label}>
+              <label htmlFor="images" className={styles.label}>
                 상품 이미지
               </label>
               <input
                 type="file"
-                id="image"
-                name="image"
-                onChange={handleChange}
+                id="images"
+                name="images"
+                onChange={handleImageUpload}
                 multiple
                 className={styles.fileInput}
               />
-              {touched?.image && errors?.image && (
-                <span className={styles.errorMsg}>{errors.image}</span>
+              {touched?.images && errors?.images && (
+                <span className={styles.errorMsg}>{errors.images}</span>
               )}
 
               {/* 이미지 미리보기 및 삭제 UI */}

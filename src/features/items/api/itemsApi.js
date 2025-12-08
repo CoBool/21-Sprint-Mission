@@ -68,3 +68,49 @@ export async function fetchItemComment(id, limit = 5, cursor) {
 
   return data;
 }
+
+/**
+ * 이미지를 서버에서 요청합니다.
+ * 
+ * @param {File} file 업로드할 이미지 파일
+ * @returns {Promise<string>} 서버에서 받아온 이미지 URL
+ */
+export async function imageUpload(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+  const { data } = await instance({
+    method: 'POST',
+    url: '/images/upload',
+    data: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return data;
+}
+
+/**
+ * 상품을 서버에서 요청합니다.
+ * 
+ * @param {Object} values 상품 정보
+ * @returns {Promise<Object>} 서버에서 받아온 데이터 객체
+ * @property {number} id 상품 ID
+ * @property {string} name 상품명
+ * @property {string} description 상품 소개
+ * @property {number} price 판매가격
+ * @property {string[]} tags 상품 태그 배열
+ * @property {string[]} images 상품 이미지 URL 배열
+ * @property {string} ownerId 사용자 ID
+ * @property {number} favoriteCount 좋아요 수
+ * @property {string} createdAt 상품 생성일
+ * @property {string} updatedAt 상품 수정일
+ */
+export async function createItem(values) {
+  const { data } = await instance({
+    method: 'POST',
+    url: '/products',
+    data: values,
+  });
+
+  return data;
+}

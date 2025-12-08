@@ -16,7 +16,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function Header() {
 
-  const { token, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <header className={styles.header}>
@@ -55,7 +55,7 @@ export default function Header() {
           </ul>
         </div>
         <nav>
-          { !token ? (<Link to="/login" className={styles.loginButton}>
+          { !user ? (<Link to="/login" className={styles.loginButton}>
             로그인
           </Link>) : (<button className={styles.loginButton} onClick={logout}>로그아웃</button>)}
         </nav>

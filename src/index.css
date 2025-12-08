@@ -23,6 +23,9 @@ body {
   /* Error */
   --color-error-500: #F74747;
 
+  /* Success */
+  --color-success-500: #00C853;
+
   /* Gray scale */
   --color-gray-900: #111827;
   --color-gray-800: #1F2937;

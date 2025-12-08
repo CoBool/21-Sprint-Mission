@@ -10,35 +10,77 @@ import googleIcon from "../../../assets/images/icons/google_oauth.png";
 
 import styles from "../Auth.module.css";
 import { useFormStatus } from "react-dom";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
-// import { authLogin } from "../../../features/auth/api/authApi.js";
+import { useForm } from "../../../hooks/useForm";
+import { useAuth } from "../../../context/AuthContext.js";
+import { useEffect } from "react";
 
-// import { useAuth } from "../../../context/AuthContext.js";
 
-function Submit({className}) {
+function Submit({className, disabled}) {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" className={className} disabled={pending}>
+    <button type="submit" className={className} disabled={pending || disabled}>
       {pending ? "대기중..." : "로그인"}
     </button>
   );
 }
 
-function submitForm(formData) {
-  console.log(formData.get('email'));
-  console.log(formData.get('password'));
-}
+const initialValues = {
+  email: "",
+  password: "",
+};
+
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+const validate = (values) => {
+  const errors = {};
+
+  // 이메일 필수 체크
+  if (!values.email.trim()) errors.email = '이메일을 입력해주세요.';
+  else if (!EMAIL_REGEX.test(values.email)) errors.email = '이메일 형식에 맞지 않습니다.';
+
+  // 비밀번호 필수 체크
+  if (!values.password.trim()) errors.password = '비밀번호를 입력해주세요.';
+  
+  return errors;
+};
 
 export default function Login() {
-  // let navigate = useNavigate();
-  // const { login } = useAuth();
+  let navigate = useNavigate();
+  const { user,login } = useAuth();
+
+  const { values, handlers, controls } = useForm({
+    initialValues,
+    validate,
+    onAction: async (values) => {
+      try {
+        await login(values.email, values.password);
+        navigate('/');
+      } catch (error) {
+        console.log('로그인 실패!!', error);
+      }
+    },
+  });
+
+  const { handleBlur, handleChange, handleAction } = handlers;
+  const { touched, errors } = controls;
+
+  // 제출 가능 여부 실시간 계산
+  const currentErrors = validate(values);
+  const isSubmitable = Object.keys(currentErrors).length === 0;
+
+  useEffect(() => {
+    if(user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   return (
     <>
-      <form className={styles.form} action={submitForm}>
+      <form className={styles.form} action={handleAction}>
         {/* 이메일 */}
-        <div className={styles.formGroup}>
+        <div className={`${styles.formGroup} ${touched?.email && errors?.email ? styles.invalid : touched?.email && !errors?.email ? styles.valid : ""}`}>
           <label className={styles.label} htmlFor="email">
             이메일
           </label>
@@ -49,15 +91,23 @@ export default function Login() {
             name="email"
             placeholder="example@email.com"
             aria-describedby="email-error"
+            value={values.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
           />
           <span
             id="email-error"
             role="alert"
-          ></span>
+            className={styles.errorMessage}
+          >
+            {touched?.email && errors?.email && (
+              errors.email
+            )}
+          </span>
         </div>
 
         {/* 비밀번호 */}
-        <div className={styles.formGroup}>
+        <div className={`${styles.formGroup} ${touched?.password && errors?.password ? styles.invalid : touched?.password && !errors?.password ? styles.valid : ""}`}>
           <label className={styles.label} htmlFor="password">
             비밀번호
           </label>
@@ -68,15 +118,23 @@ export default function Login() {
             name="password"
             placeholder="비밀번호를 입력해주세요."
             aria-describedby="password-error"
+            value={values.password}
+            onBlur={handleBlur}
+            onChange={handleChange}
           />
           <span
             id="password-error"
             role="alert"
-          ></span>
+            className={styles.errorMessage}
+          >
+            {touched?.password && errors?.password && (
+              errors.password
+            )}
+          </span>
         </div>
 
         {/* 제출 */}
-        <Submit className={styles.button}/>
+        <Submit className={styles.button} disabled={!isSubmitable}/>
       </form>
 
       <div className={styles.oauth}>

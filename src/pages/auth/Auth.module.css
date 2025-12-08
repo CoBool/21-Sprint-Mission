@@ -47,6 +47,12 @@
   border: 0;
 }
 
+.button:disabled {
+  cursor: not-allowed;
+  background-color: var(--color-gray-200);
+  color: var(--color-gray-400);
+}
+
 /*
 ==============================
     간편 로그인 블록
@@ -92,4 +98,43 @@
 .footerLink {
   color: var(--color-primary-100);
   text-decoration: none;
+}
+
+/*
+==============================
+    폼 그룹 에러 스타일
+==============================
+*/
+
+.errorMessage {
+  display: none;
+}
+
+.formGroup.invalid .errorMessage {
+  display: block;
+  color: var(--color-error-500);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.formGroup.invalid .label {
+  color: var(--color-error-500);
+}
+
+.formGroup.invalid .input {
+  border: 2px solid var(--color-error-500);
+  outline: none;
+}
+
+.formGroup.valid .errorMessage {
+  display: none;
+}
+
+.formGroup.valid .label {
+  color: var(--color-success-500);
+}
+
+.formGroup.valid .input {
+  border: 2px solid var(--color-success-500);
+  outline: none;
 }

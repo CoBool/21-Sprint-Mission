@@ -1,24 +1,26 @@
 .header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "title create"
-    "search sort";
-  row-gap: 12px;
-  column-gap: 12px;
-  align-items: center;
+  display: flex;
+  gap: 16px;
   margin-bottom: 16px;
+  flex-direction: column;
 }
 
 .title {
-  grid-area: title;
+  margin-bottom: 0;
+}
+
+.headerGroup {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-items: center;
+  justify-content: space-between;
 }
 
 .searchContainer {
   position: relative;
-  grid-area: search;
-  width: 100%;
-  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .searchContainer::before {
@@ -47,7 +49,9 @@
 }
 
 .createButton {
-  grid-area: create;
+  position: absolute;
+  top: calc(-100% - 6px);
+  right: 0;
   width: 133px;
   padding: 12px 0;
   font-weight: var(--font-weight-medium);
@@ -62,17 +66,19 @@
 }
 
 .sortContainer {
-  grid-area: sort;
   width: 42px;
-  justify-self: end;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 12px;
 }
 
 @media (min-width: 768px) {
   .header {
-    grid-template-columns: auto 1fr minmax(242px, 1fr) auto;
-    grid-template-areas: "title . search create sort";
-    column-gap: 16px;
-    align-items: center;
+    justify-content: space-between;
+  }
+
+  .createButton {
+    position: relative;
+    top: 0;
   }
 
   .sortContainer {

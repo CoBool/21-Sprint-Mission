@@ -12,7 +12,6 @@ export const useFilePreview = (fileObject) => {
     return previews;
   }, [fileObject]);
 
-  // 의존성 배열을 []로 고정! 오직 언마운트 시에만 revoke
   useEffect(() => {
     return () => {
       if (preview) {
@@ -21,8 +20,7 @@ export const useFilePreview = (fileObject) => {
         });
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [preview]);
 
   return preview;
 };
