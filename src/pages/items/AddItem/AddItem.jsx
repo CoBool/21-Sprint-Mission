@@ -2,10 +2,10 @@ import styles from "./AddItem.module.css";
 import sharedStyles from "../../../assets/styles/layout.module.css";
 import { useForm } from "../../../hooks/useForm";
 import { useFilePreview } from "../../../hooks/useFilePreview";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useNavigate } from "react-router";
 
-import { useToast } from "../../../context/ToastContext";
+import { toast } from "../../../components/ui/Toast/toast-store";
 
 const initialValues = {
   images: [],
@@ -43,7 +43,6 @@ const validate = (values) => {
 
 export default function AddItem() {
   const navigate = useNavigate();
-  const { addToast } = useToast();
   const { values, handlers, controls } = useForm({
     initialValues,
     validate,
@@ -66,7 +65,11 @@ export default function AddItem() {
           navigate("/items");
         }
       } catch (error) {
-        addToast(`상품 등록 실패: ${error.message}`, "error");
+        toast({
+          title: "상품 등록 실패",
+          description: error.message,
+          type: "error",
+        });
       }
     },
   });
@@ -109,11 +112,18 @@ export default function AddItem() {
             const response = await imageUpload(file);
             setUploadedImages((prev) => [...prev, response.url]);
 
-            addToast(`${file.name} 이미지 업로드 성공`, "success");
+            toast({
+              title: `${file.name} 이미지 업로드 성공`,
+              type: "success",
+            });
             setIsUploading(false);
           }
         } catch (e) {
-          addToast(`${file.name} 이미지 업로드 실패: ${e.message}`, "error");
+          toast({
+            title: `${file.name} 이미지 업로드 실패`,
+            description: e.message,
+            type: "error",
+          });
           setIsUploading(false);
         }
       });
@@ -125,10 +135,40 @@ export default function AddItem() {
 
     e.target.value = null;
   };
+
+  const randomToast = useCallback(() => {
+    const types = ["success", "error", "default"];
+    const type = types[Math.floor(Math.random() * types.length)];
+
+    const durations = [
+      1000,
+      2000,
+      3000,
+      4000,
+      5000,
+      6000,
+      7000,
+      8000,
+      9000,
+      10000,
+    ];
+    const duration = durations[Math.floor(Math.random() * durations.length)];
+
+    toast({
+      title: "토스트 메시지 테스트",
+      description: "토스트 메시지 테스트",
+      type,
+      duration,
+    });
+  });
+
   return (
     <main>
       <div className={`container ${sharedStyles.pageContainer}`}>
         <section className={sharedStyles.section}>
+          <button onClick={randomToast}>
+            토스트 메시지 테스트
+          </button>
           <form className={styles.form} action={handleAction}>
             {/* 헤더 영역 */}
             <div className={styles.header}>

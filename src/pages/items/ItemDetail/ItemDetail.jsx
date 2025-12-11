@@ -18,7 +18,6 @@ const ListComments = function ({comments}) {
 
 export default function ItemDetail() {
   const { itemId } = useParams();
-
   const [detail, setDetail] = useState({});
   const [comments, setComments] = useState([]);
   const [cursor, setCursor] = useState(null);

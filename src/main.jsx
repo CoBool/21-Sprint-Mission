@@ -4,8 +4,8 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
-import ToastProvider from "./provider/ToastProvider.jsx";
 import AuthProvider from "./provider/AuthProvider.jsx";
+import { Toaster } from "./components/ui/Toast/Toaster.jsx";
 
 // 레이아웃
 import DefaultLayout from "./components/layout/DefaultLayout.jsx";
@@ -74,10 +74,9 @@ import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ToastProvider>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </ToastProvider>
+    <AuthProvider>
+      <RouterProvider router={router} />
+      <Toaster />
+    </AuthProvider>
   </StrictMode>
 );

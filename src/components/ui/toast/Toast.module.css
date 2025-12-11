@@ -1,56 +1,151 @@
+/* Toast.module.css */
+
 .toastContainer {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 20px;
+  right: 20px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* 중요: gap이 있으면 사라질 때 뚝 끊기므로, gap 대신 toast 자체 margin을 쓰는 게 애니메이션엔 더 유리합니다. 
+     하지만 flex gap을 유지하려면 아래 toast-out에서 margin 처리를 해줘야 합니다. */
+  gap: 10px; 
   pointer-events: none;
 }
 
+/* ------------------------------------------------------------------
+   [1] 컨테이너 스타일
+------------------------------------------------------------------ */
 .toast {
-  padding: 12px 24px;
+  position: relative;
+  display: flex;
+  align-items: flex-start; /* 아이콘과 텍스트 상단 정렬 */
+  gap: 12px;
+  width: 360px;
+  max-width: 100%;
+  padding: 16px;
+  padding-bottom: 20px; /* 프로그레스 바 공간 확보 */
+  
+  background: white;
+  border: 1px solid #e4e4e7;
   border-radius: 8px;
-  background-color: var(--color-gray-800);
-  color: var(--color-gray-100);
-  font-size: var(--text-sm-size);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--text-sm-line);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  animation: toast-in 0.3s ease-out forwards, toast-out 0.3s 3s ease-out forwards;
-  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  overflow: hidden; /* 프로그레스 바 넘침 방지 */
+  will-change: transform, opacity, max-height, margin;
   pointer-events: auto;
 }
 
-.toast-success {
-  background-color: var(--color-success-500);
+/* ------------------------------------------------------------------
+   [2] 타입별 색상 (테두리 및 아이콘 색상 포인트)
+------------------------------------------------------------------ */
+.default .icon { color: #71717a; }
+.default .progressFill { background-color: #71717a; }
+
+.success .icon { color: #22c55e; }
+.success .progressFill { background-color: #22c55e; }
+
+.error .icon { color: #ef4444; }
+.error .progressFill { background-color: #ef4444; }
+
+/* ------------------------------------------------------------------
+   [3] 내부 요소 스타일
+------------------------------------------------------------------ */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px; /* 텍스트 높이와 시각적 정렬 */
 }
 
-.toast-error {
-  background-color: var(--color-error-500);
+.content {
+  flex: 1; /* 남은 공간 다 차지 */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #18181b;
+  line-height: 1.4;
+}
+
+.desc {
+  margin: 0;
+  font-size: 13px;
+  color: #71717a;
+  line-height: 1.4;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #a1a1aa;
+  padding: 0;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover {
+  color: #18181b;
+}
+
+/* ------------------------------------------------------------------
+   [4] 프로그레스 바
+------------------------------------------------------------------ */
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.05); /* 배경 트랙 */
+}
+
+.progressFill {
+  height: 100%;
+  width: 100%;
+  /* 여기서 var(--duration)을 사용하여 JS 타이머와 싱크를 맞춥니다 */
+  animation: progress var(--duration) linear forwards; 
+}
+
+@keyframes progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+/* ------------------------------------------------------------------
+   [5] 등장/퇴장 애니메이션 (앞서 논의한 Shadcn 스타일)
+------------------------------------------------------------------ */
+.toast[data-state="visible"] {
+  animation: toast-in 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.toast[data-state="hidden"] {
+  animation: toast-out 0.3s ease-in forwards;
+  pointer-events: none;
 }
 
 @keyframes toast-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes toast-out {
-  from {
-    opacity: 1;
-    transform: translateY(0px);
+  0% {
+    opacity: 1; transform: translateX(0);
+    max-height: 150px; padding: 16px; padding-bottom: 20px; margin-bottom: 10px;
   }
-  to {
-    opacity: 0;
-    transform: translateY(20px);
+  50% {
+    opacity: 0; transform: translateX(100%);
+    max-height: 150px; padding: 16px; padding-bottom: 20px; margin-bottom: 10px;
+  }
+  100% {
+    opacity: 0; transform: translateX(100%);
+    max-height: 0; padding: 0; margin-bottom: 0; border: 0;
   }
 }
