@@ -47,7 +47,11 @@ export const useForm = ({
     const nextErrors = validate(values);
     setErrors(nextErrors);
 
-    onAction(values);
+    if ( Object.keys(nextErrors).length === 0 ) {
+      onAction(values);
+    }
+
+    
   }
 
   const setFieldValue = (name, value) => {

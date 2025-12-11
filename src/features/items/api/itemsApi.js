@@ -21,6 +21,22 @@ import { instance } from '../../../lib/axios';
  */
 
 /**
+ * [토큰 유지 전략 메모]
+ * 
+ * - 초기 아이디어
+ *   - 인터셉터 이론은 알고있지만 제대로 모르니까 일단 무식하게 매번 토큰을 headers에 포함시켜서 보내는 전략 선택.
+ *   - 토큰은 매번 서버에 요청하지말고 모르겠어! 일단 세션 스토리지에 넣어두었다가 필요하면 꺼내서 쓰도록 하는 전략 선택.
+ *
+ * - 문제점
+ *    1) 이 세션스토리지 털릴 수 있음. 유지가 마음대로 접근해서 사용가능. 이건.. 내 능력 밖이다. 모른다.
+ *    2) API 추가할때마다 토큰 체크하고, headers에 포함시키도록 해야함. 휴먼 에러 가능성 높음.
+ * 
+ *  - 현재 결론 
+ *    - 일단 무식하게 매번 토큰 체크해서 보내도록 처리.
+ *    - 나중에 인터셉터 이론 제대로 학습하고 요청을 가로채도록 처리.
+ */
+
+/**
  * 전체 상품 목록을 서버에서 요청합니다.
  *
  * @param {number} page 페이지 번호 (1부터 시작)
@@ -76,6 +92,12 @@ export async function fetchItemComment(id, limit = 5, cursor) {
  * @returns {Promise<string>} 서버에서 받아온 이미지 URL
  */
 export async function imageUpload(file) {
+
+  const token = sessionStorage.getItem('token');
+  if ( !token ) {
+    throw new Error('로그인이 필요합니다.');
+  }
+
   const formData = new FormData();
   formData.append('image', file);
   const { data } = await instance({
@@ -84,6 +106,7 @@ export async function imageUpload(file) {
     data: formData,
     headers: {
       'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${token}`,
     },
   });
   return data;
@@ -106,10 +129,18 @@ export async function imageUpload(file) {
  * @property {string} updatedAt 상품 수정일
  */
 export async function createItem(values) {
+  const token = sessionStorage.getItem('token');
+  if ( !token ) {
+    throw new Error('로그인이 필요합니다.');
+  }
+
   const { data } = await instance({
     method: 'POST',
     url: '/products',
     data: values,
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
   });
 
   return data;
