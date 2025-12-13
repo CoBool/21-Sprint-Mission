@@ -2,7 +2,7 @@ import styles from "./AddItem.module.css";
 import sharedStyles from "../../../assets/styles/layout.module.css";
 import { useForm } from "../../../hooks/useForm";
 import { useFilePreview } from "../../../hooks/useFilePreview";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 
 import { toast } from "../../../components/ui/Toast/toast-store";
@@ -48,6 +48,7 @@ const validate = (values) => {
 export default function AddItem() {
   const navigate = useNavigate();
   const [tagValue, setTagValue] = useState("");
+  const inputRef = useRef(null);
   const { values, handlers, controls } = useForm({
     initialValues,
     validate,
@@ -139,6 +140,23 @@ export default function AddItem() {
     setFieldValue("tags", nextTags);
   };
 
+  const handleDragOver = (e) => {
+    e.preventDefault(); // 이거 없으면 drop 이벤트 자체가 안 발생함
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    if ( values.images.length >= 1 ) return;
+
+    const files = [...e.dataTransfer.items].map((item) => item.getAsFile()).filter((file) => file);
+
+    if ( files.length > 0 ) {
+      const newFiles = Array.from(files || []).slice(0, 1);
+      setFieldValue("images", [...values.images, ...newFiles]);
+    }
+  }
+
   return (
     <main>
       <div className={`container ${sharedStyles.pageContainer}`}>
@@ -151,7 +169,7 @@ export default function AddItem() {
               </button>
             </div>
             {/* 1. 이미지 업로드 그룹 */}
-            <div className={styles.formGroup}>
+            <div className={styles.formGroup} onDragOver={handleDragOver} onDrop={handleDrop}>
               <label htmlFor="images" className={styles.label}>
                 상품 이미지
               </label>
@@ -159,8 +177,10 @@ export default function AddItem() {
                 type="file"
                 id="images"
                 name="images"
+                ref={inputRef}
                 onChange={handleImageUpload}
                 className={styles.fileInput}
+                onClick={(e) => { if ( values.images.length >= 1 ) e.preventDefault();}}
               />
               {/* 이미지 미리보기 및 삭제 UI */}
               <div className={styles.previewList}>
