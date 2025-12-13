@@ -9,22 +9,13 @@ import kakaoIcon from "../../../assets/images/icons/kakao_oauth.png";
 import googleIcon from "../../../assets/images/icons/google_oauth.png";
 
 import styles from "../Auth.module.css";
+import { Link } from "react-router";
 import { useFormStatus } from "react-dom";
-import { Link, useNavigate } from "react-router";
 
 import { useForm } from "../../../hooks/useForm";
 import { useAuth } from "../../../context/AuthContext.js";
-import { useEffect } from "react";
 
-
-function Submit({className, disabled}) {
-  const { pending } = useFormStatus();
-  return (
-    <button type="submit" className={className} disabled={pending || disabled}>
-      {pending ? "대기중..." : "로그인"}
-    </button>
-  );
-}
+import { toast } from "../../../components/ui/Toast/toast-store";
 
 const initialValues = {
   email: "",
@@ -47,34 +38,27 @@ const validate = (values) => {
 };
 
 export default function Login() {
-  let navigate = useNavigate();
-  const { user,login } = useAuth();
+  const { pending } = useFormStatus();
+  const { login } = useAuth();
 
-  const { values, handlers, controls } = useForm({
+  const { handlers, controls } = useForm({
     initialValues,
     validate,
     onAction: async (values) => {
       try {
         await login(values.email, values.password);
-        navigate('/');
       } catch (error) {
-        console.log('로그인 실패!!', error);
+        toast({
+          title: "로그인 실패",
+          description: error.message,
+          type: "error",
+        });
       }
     },
   });
 
-  const { handleBlur, handleChange, handleAction } = handlers;
+  const { register, handleAction } = handlers;
   const { touched, errors } = controls;
-
-  // 제출 가능 여부 실시간 계산
-  const currentErrors = validate(values);
-  const isSubmitable = Object.keys(currentErrors).length === 0;
-
-  useEffect(() => {
-    if(user) {
-      navigate('/');
-    }
-  }, [user, navigate]);
 
   return (
     <>
@@ -91,9 +75,7 @@ export default function Login() {
             name="email"
             placeholder="example@email.com"
             aria-describedby="email-error"
-            value={values.email}
-            onBlur={handleBlur}
-            onChange={handleChange}
+            {...register("email")}
           />
           <span
             id="email-error"
@@ -118,9 +100,7 @@ export default function Login() {
             name="password"
             placeholder="비밀번호를 입력해주세요."
             aria-describedby="password-error"
-            value={values.password}
-            onBlur={handleBlur}
-            onChange={handleChange}
+            {...register("password")}
           />
           <span
             id="password-error"
@@ -134,7 +114,9 @@ export default function Login() {
         </div>
 
         {/* 제출 */}
-        <Submit className={styles.button} disabled={!isSubmitable}/>
+        <button type="submit" className={styles.button} disabled={pending}>
+          {pending ? "로그인 중..." : "로그인"}
+        </button>
       </form>
 
       <div className={styles.oauth}>

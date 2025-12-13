@@ -2,9 +2,13 @@ import { instance } from '../../../lib/axios';
 
 // 일단 1차 테스트 부터 시작.
 export async function authMe() {
+  const token = sessionStorage.getItem('token');
   const response = await instance({
     method: "GET",
     url: '/users/me',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
   });
 
   return response.data;
@@ -22,8 +26,8 @@ export async function authRefresh(refreshToken) {
   return response.data;
 }
 
-export async function authLogin(email, password) {
-  const authLogin = await instance({
+export async function authSignIn(email, password) {
+  const response = await instance({
     method: "POST",
     url: '/auth/signIn',
     data: {
@@ -32,5 +36,20 @@ export async function authLogin(email, password) {
     }
   });
 
-  return authLogin.data;
+  return response.data;
+}
+
+export async function authSignUp(email, nickname, password, passwordConfirmation) {
+  const response = await instance({
+    method: "POST",
+    url: '/auth/signUp',
+    data: {
+      email,
+      nickname,
+      password,
+      passwordConfirmation,
+    }
+  });
+
+  return response.data;
 }

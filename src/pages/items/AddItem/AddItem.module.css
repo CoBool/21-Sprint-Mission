@@ -66,11 +66,6 @@
   min-height: 100px;
 }
 
-.errorMsg {
-  color: red;
-  font-size: 12px;
-}
-
 /* Preview Area */
 .previewList {
   display: flex;
@@ -107,4 +102,35 @@
   border: none;
   cursor: pointer;
   font-size: 12px;
+}
+
+/*
+==============================
+    폼 그룹 에러 스타일
+==============================
+*/
+.formGroup.invalid .errorMessage {
+  color: var(--color-error-500);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.formGroup.invalid .label {
+  color: var(--color-error-500);
+}
+
+.formGroup.invalid .input,
+.formGroup.invalid .textarea {
+  border: 2px solid var(--color-error-500);
+  outline: none;
+}
+
+.formGroup.valid .label {
+  color: var(--color-success-500);
+}
+
+.formGroup.valid .input,
+.formGroup.valid .textarea {
+  border: 2px solid var(--color-success-500);
+  outline: none;
 }

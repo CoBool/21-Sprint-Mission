@@ -59,8 +59,6 @@ function Toast({ toast, dismiss }) {
 export function Toaster() {
   const { toasts, dismiss } = useToast();
 
-  console.log(toasts);
-
   if (toasts.length === 0) return null;
 
   return (
