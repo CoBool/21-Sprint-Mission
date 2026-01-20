@@ -1,0 +1,91 @@
+@reference "../../index.css";
+
+.Hero {
+  --hero-bg: #cfe5ff;
+  --hero-title-color: var(--color-gray-700);
+  --hero-button-bg: var(--color-primary);
+  --hero-button-color: var(--color-primary-foreground);
+
+  @apply relative;
+  background-color: var(--hero-bg);
+}
+
+.HeroContainer {
+  @apply flex flex-col;
+  gap: clamp(40px, 8vw, 120px);
+  padding-top: clamp(40px, 8vw, 120px);
+}
+
+.HeroText {
+  @apply flex flex-col gap-4 items-center text-center;
+  word-break: keep-all;
+}
+
+.HeroTitle {
+  @apply font-bold;
+  font-size: clamp(32px, 2.1vw, 40px);
+  line-height: 1.4;
+  color: var(--hero-title-color);
+}
+
+.HeroButton {
+  @apply flex w-full max-w-[350px] justify-center items-center rounded-full;
+  font-size: clamp(18px, 1.042vw, 20px);
+  padding: clamp(12px, 3.2vw, 16px) clamp(70px, 18.933vw, 125px);
+  background-color: var(--hero-button-bg);
+  color: var(--hero-button-color);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.HeroImage {
+  @apply relative flex items-end justify-center bg-no-repeat bg-cover;
+  width: calc(100% + var(--container-px) * 2);
+  margin: 0 calc(var(--container-px) * -1);
+  background-position: bottom center;
+}
+
+.HeroFirst .HeroImage {
+  aspect-ratio: 448 / 228;
+  background-image: url('/images/hero-image.png');
+}
+
+.HeroSecond .HeroImage {
+  aspect-ratio: 375 / 217;
+  background-image: url('/images/hero-image2.png');
+}
+
+@media (min-width: 768px) {
+  .HeroFirst .HeroImage {
+    aspect-ratio: 744 / 340;
+  }
+
+  .HeroSecond .HeroImage {
+    aspect-ratio: 744 / 397;
+  }
+}
+
+@media (min-width: 1280px) {
+  .HeroContainer {
+    @apply flex-row;
+    gap: 0;
+    padding-top: clamp(50px, 10vw, 200px);
+  }
+
+  .HeroText {
+    @apply items-start justify-center text-left;
+    max-width: 30%;
+  }
+
+  .HeroImage {
+    @apply w-full mx-auto;
+  }
+
+  .HeroFirst .HeroImage {
+    aspect-ratio: 746 / 340;
+  }
+
+  .HeroSecond .HeroImage {
+    aspect-ratio: 746 / 397;
+  }
+}
