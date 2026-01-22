@@ -1,4 +1,6 @@
-import { Link } from 'react-router';
+import { ButtonLink } from '@/components/ui/Button';
+
+import { FeatureCard } from '@/features/Home/components/FeatureCard/FeatureCard';
 
 import styles from './Home.module.css';
 
@@ -12,19 +14,35 @@ function Home() {
               <h1 className={`${styles.HeroTitle}`}>
                 일상의 모든 물건을 거래해보세요
               </h1>
-              <Link to="/items" className={`${styles.HeroButton}`}>
+              <ButtonLink to="/items" variant="default" className={`h-auto ${styles.HeroButton}`}>
                 구경하러 가기
-              </Link>
+              </ButtonLink>
             </div>
             <div className={styles.HeroImage}></div>
           </div>
         </div>
       </section>
 
-      <section>
-        <div>카드1</div>
-        <div>카드2</div>
-        <div>카드3</div>
+      <section className={`${styles.Feature}`}>
+        <FeatureCard
+          src="/images/hot-item.png"
+          label="Hot item"
+          title="인기 상품을 확인해 보세요"
+          description="가장 HOT한 중고거래 물품을 판다 마켓에서 확인해 보세요"
+        />
+        <FeatureCard
+          src="/images/search-item.png"
+          label="Search"
+          title="구매를 원하는 상품을 검색하세요"
+          description="구매하고 싶은 물품은 검색해서 쉽게 찾아보세요"
+          reverse={true}
+        />
+        <FeatureCard
+          src="/images/register-item.png"
+          label="Register"
+          title="판매를 원하는 상품을 등록하세요"
+          description="어떤 물건이든 판매하고 싶은 상품을 쉽게 등록하세요"
+        />
       </section>
 
       <section className={`${styles.Hero} ${styles.HeroSecond}`}>
